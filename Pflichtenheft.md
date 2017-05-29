@@ -15,7 +15,7 @@ Das Projekt trägt den Namen "Twitter Miner" und befasst sich mit der Klassifika
 
 Das nachfolgende Use-Case Diagramm verdeutlicht die Anwendungsfälle der Aktoren _Anwender_ und _Administrator_.
 
-![](/project_twitter_miner/img/Use_Case_Diagramm.png)
+![](/Twitter_Miner/img/Use_Case_Diagramm.png)
 
 ## Funktionsumfang
 
@@ -46,14 +46,14 @@ Nachfolgend wurden die von dem Use-Case Diagramm und den User-Stories abgeleitet
 
 Das Projekt "Twitter Miner" wird entsprechend der Client-Server-Architektur entworfen. Der Client ist eine Webanwendung die im Browser des Anwenders läuft. Der Client öffnet eine Websocketverbindung zum Server, der sich um alle Aufgaben wie die Beschaffung der Daten und die Klassifikation kümmert. Der Server ist mit Python implementiert und teilt sich auf in fünf Komponenten. Auf die Kommnunikation zwischen den Komponenten, sowie zwischen dem Client und dem Server wird im Detail im Kapitel [Daten Modell](#datenmodell) beschrieben. Der Client kommuniziert mit der Komponente "Frontend Server". Dieser nutzt wiederum die Komponente "Twitter Connector" um Tweets mit Hilfe der Twitter-API zu einem bestimmten Hashtag zu laden. Die geladenen Tweets werden anschließend an die drei Algorithmus-Komponenten weitergegeben. Jede Komponente implementiert dabei einen bestimmten Klassifikationsalgorithmus. Die Ergebnisse der Klassifikation werden am Ende von der Frontend-Server-Komponente gesammelt und in geeigneter Form an den Client zurückgeliefert. Die Verantwortlichkeiten für die einzelnen Komponenten sind in Kapitel [Verantwortlichkeiten](#verantwortlichkeiten) aufgelistet.
 
-![](/project_twitter_miner/img/Systemarchitektur.png)
+![](/Twitter_Miner/img/Systemarchitektur.png)
 
 ## Gui Mock Ups
 
 Ein Suchstring (suche nach Hashtag) wird über die Texbox eingegeben und mit der Betätigung des Buttons an den Server gesendet.
 Die Antwort wird in Form einer Auflistung der Tweets in verkürzter Weise angezeigt. Mit einem Klick auf ein einzelnes Listenelement werden die Details auf der rechten Seite angezeitgt. Zu diesen gehören die Ergebnisse der Klassifizierungs-Algorithmen. Das erste, farblich hervorgehobene, Listenelement stellt eine Zusammenfassung der Suchergebnisse dar. Mit einem Klick auf dieses Element wird eine zusammenfassende Übersicht, einschließlich Kuchendiagramm über die Anzahl der Positiven und Negativen Tweets, gegeben.
 
-![](/project_twitter_miner/img/Mockup.png)
+![](/Twitter_Miner/img/Mockup.png)
 
 
 ## <a name="datenmodell"></a>Daten Modell
@@ -97,7 +97,7 @@ Server->Client
 ## Projektplan
 Das Projekt "Twitter Miner" begann am 08.05.17. Die Meilensteine sind die Abgabe dieses Pflichtenhefts am 29.05.17, die Abgabe der eigenen Themen am  03.07.17 (in diesem Projekt die Ausarbeitung der Data Mining Algorithmen Bayes, Support-Vector-Machine und Entscheidungsbaum). Der Projektzeitraum endet mit der Abgabe und Präsentation der Software am 10.07.17.
 
-![](/project_twitter_miner/img/Projektplan.png)
+![](/Twitter_Miner/img/Projektplan.png)
 
 ## <a name="verantwortlichkeiten"></a>Verantwortlichkeiten
 

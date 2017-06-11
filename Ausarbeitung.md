@@ -38,8 +38,17 @@ Die nachfolgenden Klassifikationsmethoden verwenden einen Trainingsdatensatz, we
 ### Decision Tree
 (Yannick)
 
-
-
+- Grundlagen
+    - Allgemeine Definition
+    - Pseudocode GenericDecisionTree
+    - Split-Kriterien
+    - Stoppen und beschneiden
+- CART: Classification And Regression Trees
+    - Eigenschaften
+    - Gini Index als Split-Kriterium
+    - CART Klassifikation: Anwendungsbeispiel
+- Implementierung
+    - sklearn
 
 
 ## Evaluation

@@ -17,6 +17,14 @@ Die nachfolgenden Klassifikationsmethoden verwenden einen Trainingsdatensatz, we
 
 ### Bayes
 (Sven)
+- Einleitung
+- Geschichte
+- Mathematische Grundlagen
+    - Bedingte Wahrscheinlichkeiten (posteriori, a priori) 
+- Das Theorem
+- Rechenbeispiel
+- Anwendungsgebiete
+- Referenzen
 
 
 ### Support Vector Machine

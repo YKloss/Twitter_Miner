@@ -22,6 +22,18 @@ Die nachfolgenden Klassifikationsmethoden verwenden einen Trainingsdatensatz, we
 ### Support Vector Machine
 (Daniel)
 
+- Anwendungsgebiete
+
+- Algorithmus im Detail
+-- Ebenendarstellung
+-- Bedingungen
+-- Abstandsberechnung
+-- Optimierungsproblem
+
+- Implementierungen
+-- Pseudocode
+-- sklearn-Framework
+
 
 ### Decision Tree
 (Yannick)

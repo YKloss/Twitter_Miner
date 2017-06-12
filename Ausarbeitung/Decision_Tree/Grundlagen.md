@@ -46,7 +46,8 @@ Ein Split-Kriterium sind Bedingungen über ein oder mehrere Input Variablen eine
 ## Stopp-Kriterien und Pruning
 Wenn ein Decision Tree bis zum allerletzten Blatt erstellt wird bis alle Blätter jeweils nur noch Datenmengen eines Wertes der Zielvariablen enthalten, dann weist der Decision Tree eine Genauigkeit von 100% in Bezug auf den Trainingsdatensatz auf. Leider hat sich gezeigt, dass ein solcher Decision Tree sich schlecht auf neue, unvorhergesehende Daten verhält. Im Allgemeinen sind einfachere und weniger komplexe Decision Trees zu bevorzugen um ein Overfitting zu vermeiden.
 
-Mit einem Stopp-Kriterium lässt sich das wachsen des Decision Trees aufhalten. Leider gibt es keine Möglichkeit vorherzusagen an welchem Punkt der Decision Tree aufhören soll zu wachsen. Daher ist eine gängige Strategie bestimmte Knoten Teile zu entfernen oder zu konvertieren (Pruning). 
+Mit einem Stopp-Kriterium (z. B. eine festgelegte Fehlerrate) lässt sich das wachsen des Decision Trees aufhalten. Leider gibt es keine Möglichkeit vorherzusagen an welchem Punkt der Decision Tree aufhören soll zu wachsen. Daher ist eine gängige Strategie bestimmte Knoten Teile zu entfernen oder zu konvertieren (Pruning). Eine Pruning-Strategie ist das Verwenden einer Kostenfunktion, welche beispielsweise die Fehlerrate sowie die Komplexität (Anzahl der Knoten und Informations-theoretische Prinzipien) des Decision Trees berücksichtigen.
+
 
 
 

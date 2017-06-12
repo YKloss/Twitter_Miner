@@ -36,6 +36,12 @@ class SupportVectorMachine():
         result = self.classificator.predict([text])[0]
         return result
 
+    def predict_all(self, texts):
+        if not self.classificator:
+            raise Exception("Model not trained!")
+        result = self.classificator.predict(texts)
+        return result
+
     def save(self):
         logger.debug("Saving model...")
         my_path = os.path.abspath(os.path.dirname(__file__))

@@ -8,4 +8,4 @@ class TwitterConnector():
     def get_tweets(self, hastag):
         tweets = tweepy.Cursor(self.api.search, q=hastag).items()
         #return complete tweet, not only the text
-        return tweets
+        return tweets 

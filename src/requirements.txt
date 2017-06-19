@@ -3,3 +3,4 @@ scikit-learn>=0.18.1
 flask>=0.12.2
 flask-socketio
 gevent>=1.2.1
+tweepy

@@ -22,7 +22,7 @@ setup(app)
 def test_message(message):
     hashtag = message['hashtag']
     twitterconnector = TwitterConnector()
-    tweets = twitterconnector.gettweets(hashtag)
+    tweets = twitterconnector.get_tweets(hashtag)
 
     tweet_texts = [t.text for t in tweets]
     svd = app.config['SVD']

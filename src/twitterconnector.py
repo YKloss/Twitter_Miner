@@ -1,11 +1,15 @@
 import tweepy
 
+
 class TwitterConnector():
-    def __init__(self, consumer_key, consumer_secret):   
+    def __init__(self):
+        with open("twitter_secrets.txt", "r") as f:
+            consumer_key = f.readline().split("=")[1]
+            consumer_secret = f.readline().split("=")[1]
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
         self.api = tweepy.API(auth)
 
-    def get_tweets(self, hastag):
-        tweets = tweepy.Cursor(self.api.search, q=hastag).items()
+    def get_tweets(self, hashtag):
+        tweets = tweepy.Cursor(self.api.search, q=hashtag).items()
         #return complete tweet, not only the text
         return tweets 

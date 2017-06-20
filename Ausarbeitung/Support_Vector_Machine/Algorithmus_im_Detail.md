@@ -68,6 +68,7 @@ Genutzt wurde dazu die Implementierung des *Pegasos*<sup id="fn5_1">[[5]](#fn5)<
 
 
 ___
+
 <span name="fn1">1.</span><span id="fn1">1.</span> https://de.wikipedia.org/wiki/Support_Vector_Machine [↩](#fn1_1)[↩](#fn1_2)
 
 <span id="fn2">2.</span> Manning, C. D., Raghavan, P., & Schütze, H. Cambridge University Press; 2009. Introduction to Information Retrieval [↩](#fn2_1)

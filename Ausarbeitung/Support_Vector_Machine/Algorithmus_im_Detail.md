@@ -1,0 +1,75 @@
+# Algorithmus im Detail
+
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Svm_intro.svg/232px-Svm_intro.svg.png)
+
+*<a name="fig:svm2">Abbildung 1: </a>Zwei mögliche Hyperebenen*[^fn1]
+
+Eine Support Vector Machine trennt eine Menge von Objekten mit einer Hyperebene in zwei Klassen, sodass der Abstand zwischen den Objekten der Klassen und der Hyperebene maximal wird. Sie wird daher auch als *Large Margin Classifier* bezeichnet. Abbildung [1](#fig:svm2) zeigt eine Menge von Objekten, die zu zwei verschiedenen Klassen gehören, sowie zwei mögliche Hyperebenen *A* und *B*. Beide teilen die Objekte in zwei Klassen auf, doch der Abstand bei Trennebene *A* ist wesentlich größer als bei Trennebene *B*. Die Trennebene *A*, mit dem maximalen Abstand, stellt damit einen besseren Klassifikator dar, weil sie den kleinsten Generalisierungsfehler erzeugt.[^fn2]
+
+#### Ebenendarstellung
+
+Gegeben sei ein zweidimensionaler Raum, dann lässt sich die Hyperebene als lineare Gleichung ![y = a*x+b](https://latex.codecogs.com/gif.latex?$y&space;=&space;a*x&plus;b$) darstellen. Sei Vektor ![vec w](https://latex.codecogs.com/gif.latex?\vec{w}) ![](https://latex.codecogs.com/gif.latex?=\begin{pmatrix}&space;-a&space;\\&space;1\end{pmatrix}) und ![vec x](https://latex.codecogs.com/gif.latex?\vec{x}) ![](https://latex.codecogs.com/gif.latex?=\begin{pmatrix}&space;x&space;\\&space;y\end{pmatrix}),
+dann lässt sich die lineare Gleichung darstellen als ![](https://latex.codecogs.com/gif.latex?y-ax&plus;b&space;=&space;\vec{w}^T\vec{x}&plus;b&space;=&space;0) .[^fn3]
+
+#### Bedingungen
+
+Gesucht werden zwei Hyperebenen ![](https://latex.codecogs.com/gif.latex?\vec{w}^T\vec{x}&space;=&space;-1) und ![](https://latex.codecogs.com/gif.latex?\vec{w}^T\vec{x}&space;=&space;1), die eine Menge von Datenpunkten in zwei verschiedene Klassen trennen. Zwischen diesen Hyperebenen sollen sich keine Datenpunkte befinden.
+Für jeden Datenpunkt ![](https://latex.codecogs.com/gif.latex?x_i) muss also gelten:
+
+<a name="eq:constraint1">Formel 1: </a> ![](https://latex.codecogs.com/gif.latex?\vec{w}^T\vec{x_i}&space;&plus;&space;b&space;\geq&space;1\&space;\text{f\"ur&space;}&space;\vec{x_i}&space;\text{&space;aus&space;Klasse&space;}1)
+
+oder
+
+<a name="eq:constraint2">Formel 2: </a> ![](https://latex.codecogs.com/gif.latex?\vec{w}^T\vec{x_i}&space;&plus;&space;b&space;\leq&space;-1&space;\text{&space;f\"ur&space;}&space;\vec{x_i}&space;\text{&space;aus&space;Klasse}&space;-1)
+
+Sei ![](https://latex.codecogs.com/gif.latex?y_i) ist die zugehörige Klasse zum Datenpunkt [](https://latex.codecogs.com/gif.latex?x_i), dann lassen sich die Bedingungen aus Formal [1](#eq:constraint1) und [2](#eq:constraint2) zu einer einzigen Bedingung zusammenfassen, indem sie mit ![](https://latex.codecogs.com/gif.latex?y_i) multipliziert werden.
+
+<a name="eq:constraint3">Formel 3: </a> ![](https://latex.codecogs.com/gif.latex?y_i(\vec{w}\cdot\vec{x_i}&space;&plus;&space;b)&space;\geq&space;1\;\text{f\"ur}&space;1\leq&space;i&space;\leq&space;n)
+
+In Abbildung [2](#fig:svm1) makieren die gestrichelten Linien zwei mögliche Hyperebenen, sodass die Bedingung aus Formel [3](#eq:constraint3) erfüllt ist.[^fn4]
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Svm_max_sep_hyperplane_with_margin.png/445px-Svm_max_sep_hyperplane_with_margin.png)
+
+*<a name="fig:svm1">Abbildung 2: </a>Support Vector Machine - Hyperebene mit maximalem Abstand*[^fn1]
+
+#### Abstandsberechnung
+
+Ziel der Support Vector Machine ist es den Abstand ![](https://latex.codecogs.com/gif.latex?m) zwischen den Hyperebenen ![](https://latex.codecogs.com/gif.latex?H_0:&space;\vec{w}^T\vec{x}&space;=&space;-1) und ![](https://latex.codecogs.com/gif.latex?H_1:&space;\vec{w}^T\vec{x}&space;=&space;1) zu maximieren.
+
+
+![](https://www.svm-tutorial.com/wp-content/uploads/2015/06/svm_margin_demonstration_7.png)
+
+*<a name="fig:svmmargin">Abbildung 3: </a>Abstandsberechnung*[^fn4]
+
+Der Abstand ![](https://latex.codecogs.com/gif.latex?m) lässt sich einfach als Vektor ![](https://latex.codecogs.com/gif.latex?\vec{k}) darstellen mit:
+
+<a name="eq:marginvector">Formel 4: </a> ![](https://latex.codecogs.com/gif.latex?\vec{k}=m\frac{\vec{w}}{\|\vec{w}\|})
+
+Addiert man zu einem Punkt ![](https://latex.codecogs.com/gif.latex?x_0) in der Hyperebene ![](https://latex.codecogs.com/gif.latex?H_0) den Vektor ![](https://latex.codecogs.com/gif.latex?\vec{k}) , so erhält man den Punkt ![](https://latex.codecogs.com/gif.latex?z_0) in der Hyperebene ![](https://latex.codecogs.com/gif.latex?H_1).
+Setzt man Formel [4](#eq:marginvector) in ![](https://latex.codecogs.com/gif.latex?H_1) ein, so erhält man die Formel [5](#eq:margin) um den Abstand zu berechnen.[^fn4]
+
+<a name="eq:margin">Formel 5: </a> ![](https://latex.codecogs.com/gif.latex?m&space;=&space;\frac{2}{\|\vec{w}\|})
+
+Die Herleitung der Formel [5](#eq:margin) ist [hier](Herleitung_SVM_Abstand.md) aufgelistet.
+
+#### Optimierungsproblem
+
+Den maximalen Abstand ![](https://latex.codecogs.com/gif.latex?m) erhält man demnach, indem ![](https://latex.codecogs.com/gif.latex?\|\vec{w}\|) minimiert wird.
+Es wird also eine Hyperebene mit dem kleinsten ![](https://latex.codecogs.com/gif.latex?\|\vec{w}\|) gesucht, die die Bedingung aus Formel [3](#eq:constraint3) erfüllt.
+
+Eine Möglichkeit dieses Optimierungsproblem zu lösen ist mittels Gradientenabstieg.
+Genutzt wurde dazu die Implementierung des *Pegasos*[^fn5] Algorithmus aus dem *sklearn*-Framework[^fn6]. Der Algorithmus basiert auf der Fehlerfunktion aus Formel [6](#eq:svderrorfunc).
+![](https://latex.codecogs.com/gif.latex?\ell_i) bezieht sich hierbei auf die *hinge loss* Funktion (siehe Formel [7](#eq:hingeloss)).
+
+<a name="eq:svderrorfunc">Formel 6: </a> ![](https://latex.codecogs.com/gif.latex?E(\vec{w})&space;=&space;\lambda\frac{1}{2}&space;\left\|&space;\vec{w}&space;\right\|^2&space;&plus;&space;\frac{1}{n}&space;\sum_{i=1}^n&space;\ell_i(\langle&space;\vec{w},\vec{x}\rangle&space;&plus;&space;b))
+
+<a name="eq:hingeloss">Formel 7: </a> ![](https://latex.codecogs.com/gif.latex?\max{\{0,1-y_i(\vec{w}^T\vec{x}&plus;b)}\})
+
+
+[^fn1]: https://de.wikipedia.org/wiki/Support_Vector_Machine
+[^fn2]: Manning, C. D., Raghavan, P., & Schütze, H. Cambridge University Press; 2009. Introduction to Information Retrieval
+[^fn3]: http://www.svm-tutorial.com/2014/11/svm-understanding-math-part-2/
+[^fn4]: http://www.svm-tutorial.com/2015/06/svm-understanding-math-part-3/
+[^fn5]: Shalev-Shwartz, Shai, et al. "Pegasos: Primal estimated sub-gradient solver for svm." Mathematical programming 127.1 (2011): 3-30.
+[^fn6]: http://scikit-learn.org/stable/modules/sgd.html

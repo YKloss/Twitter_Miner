@@ -23,4 +23,3 @@
 
 ![](https://latex.codecogs.com/gif.latex?\begin{aligned}m=\frac{2}{\|\vec{w}\|}\end{aligned})
 
-TODO: Quelle einfügen

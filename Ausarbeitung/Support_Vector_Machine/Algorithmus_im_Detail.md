@@ -75,7 +75,7 @@ ___
 
 <b id="fn3"></b>3. http://www.svm-tutorial.com/2014/11/svm-understanding-math-part-2/ [↩](#fn3_1)
 
-<b id="fn4"></b>4. http://www.svm-tutorial.com/2015/06/svm-understanding-math-part-3/ [↩](#fn3_1)[↩](#fn3_2)[↩](#fn3_3)
+<b id="fn4"></b>4. http://www.svm-tutorial.com/2015/06/svm-understanding-math-part-3/ [↩](#fn4_1)[↩](#fn4_2)[↩](#fn4_3)
 
 <b id="fn5"></b>5. Shalev-Shwartz, Shai, et al. "Pegasos: Primal estimated sub-gradient solver for svm." Mathematical programming 127.1 (2011): 3-30. [↩](#fn5_1)
 

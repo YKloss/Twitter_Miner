@@ -3,7 +3,8 @@
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Svm_intro.svg/232px-Svm_intro.svg.png)
 
-*<a name="fig:svm2">Abbildung 1: </a>Zwei mögliche Hyperebenen*[^fn1]
+*<a name="fig:svm2">Abbildung 1: </a>Zwei mögliche Hyperebenen*[^fn1] 
+<sup id="fn1_1">[[1]](#fn1)</sup>
 
 Eine Support Vector Machine trennt eine Menge von Objekten mit einer Hyperebene in zwei Klassen, sodass der Abstand zwischen den Objekten der Klassen und der Hyperebene maximal wird. Sie wird daher auch als *Large Margin Classifier* bezeichnet. Abbildung [1](#fig:svm2) zeigt eine Menge von Objekten, die zu zwei verschiedenen Klassen gehören, sowie zwei mögliche Hyperebenen *A* und *B*. Beide teilen die Objekte in zwei Klassen auf, doch der Abstand bei Trennebene *A* ist wesentlich größer als bei Trennebene *B*. Die Trennebene *A*, mit dem maximalen Abstand, stellt damit einen besseren Klassifikator dar, weil sie den kleinsten Generalisierungsfehler erzeugt.[^fn2]
 
@@ -67,6 +68,8 @@ Genutzt wurde dazu die Implementierung des *Pegasos*[^fn5] Algorithmus aus dem *
 <a name="eq:hingeloss">Formel 7: </a> ![](https://latex.codecogs.com/gif.latex?\max{\{0,1-y_i(\vec{w}^T\vec{x}&plus;b)}\})
 
 
+___
+1. https://de.wikipedia.org/wiki/Support_Vector_Machine [↩](#fn1_1)
 [^fn1]: https://de.wikipedia.org/wiki/Support_Vector_Machine
 [^fn2]: Manning, C. D., Raghavan, P., & Schütze, H. Cambridge University Press; 2009. Introduction to Information Retrieval
 [^fn3]: http://www.svm-tutorial.com/2014/11/svm-understanding-math-part-2/

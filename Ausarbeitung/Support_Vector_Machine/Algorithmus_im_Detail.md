@@ -67,6 +67,9 @@ Genutzt wurde dazu die Implementierung des *Pegasos*<sup id="fn5_1">[[5]](#fn5)<
 <a name="eq:hingeloss">Formel 7: </a> ![](https://latex.codecogs.com/gif.latex?\max{\{0,1-y_i(\vec{w}^T\vec{x}&plus;b)}\})
 
 
+#### Kernel Trick
+[TODO]
+
 ___
 
 <b id="fn1"></b>1. https://de.wikipedia.org/wiki/Support_Vector_Machine [↩](#fn1_1)[↩](#fn1_2)

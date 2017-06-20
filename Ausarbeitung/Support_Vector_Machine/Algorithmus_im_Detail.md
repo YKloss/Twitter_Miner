@@ -71,12 +71,12 @@ ___
 
 <b id="fn1"></b>1. https://de.wikipedia.org/wiki/Support_Vector_Machine [↩](#fn1_1)[↩](#fn1_2)
 
-<span id="fn2">2.</span> Manning, C. D., Raghavan, P., & Schütze, H. Cambridge University Press; 2009. Introduction to Information Retrieval [↩](#fn2_1)
+<b id="fn2"></b>2. Manning, C. D., Raghavan, P., & Schütze, H. Cambridge University Press; 2009. Introduction to Information Retrieval [↩](#fn2_1)
 
-<span id="fn3">3.</span> http://www.svm-tutorial.com/2014/11/svm-understanding-math-part-2/ [↩](#fn3_1)
+<b id="fn3"></b>3. http://www.svm-tutorial.com/2014/11/svm-understanding-math-part-2/ [↩](#fn3_1)
 
-<span id="fn4">4.</span> http://www.svm-tutorial.com/2015/06/svm-understanding-math-part-3/ [↩](#fn3_1)[↩](#fn3_2)[↩](#fn3_3)
+<b id="fn4"></b>4. http://www.svm-tutorial.com/2015/06/svm-understanding-math-part-3/ [↩](#fn3_1)[↩](#fn3_2)[↩](#fn3_3)
 
-<span id="fn5">5.</span> Shalev-Shwartz, Shai, et al. "Pegasos: Primal estimated sub-gradient solver for svm." Mathematical programming 127.1 (2011): 3-30. [↩](#fn5_1)
+<b id="fn5"></b>5. Shalev-Shwartz, Shai, et al. "Pegasos: Primal estimated sub-gradient solver for svm." Mathematical programming 127.1 (2011): 3-30. [↩](#fn5_1)
 
-<span id="fn6">6.</span> http://scikit-learn.org/stable/modules/sgd.html [↩](#fn6_1)
+<b id="fn6"></b>6. http://scikit-learn.org/stable/modules/sgd.html [↩](#fn6_1)

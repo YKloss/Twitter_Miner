@@ -23,7 +23,8 @@ Die nachfolgenden Kapitel befassen sich mit der Datenvorverarbeitung, den Klassi
 ### Übersicht Data Mining Algorithmen
 (Sven)
 - Tabelle oder Baumdiagramm + kurze Beschreibung
-- Einordnung in usner Projekt
+- Pros und Cons
+- Einordnung in unser Projekt
 
 ## Klassifikationsmethoden
 Die nachfolgenden Klassifikationsmethoden verwenden einen Trainingsdatensatz, welcher eine Liste von Tweets mit der dazugehörigen Klassifikation (positiv, negativ) enthält.
@@ -74,5 +75,4 @@ Die nachfolgenden Klassifikationsmethoden verwenden einen Trainingsdatensatz, we
 
 ## Evaluation
 (Sven, Daniel, Yannick)
-- Tabelle mit Pros und Cons der Klassifikationsmethoden
 - Auflistung der Fehlerraten von den Klassifikationsmethoden (Auf einen festgelegten Test-Datensatz)

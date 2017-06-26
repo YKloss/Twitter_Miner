@@ -5,12 +5,25 @@ In diesem Dokument befinden sich die theoretischen Inhalte für das _TwitterMine
 
 Die nachfolgenden Kapitel befassen sich mit der Datenvorverarbeitung, den Klassifikationsmethoden und abschließend mit einer Evaluation.
 
-## Datenvorverarbeitung
-(Sven, Daniel, Yannick)
+## Einleitung
+
+### Knowledge Discovery in Databases (KDD)
+(Daniel)
+- Diagramm + beschreiben
+- Einordnung in unser Projekt
+
+### Datenvorverarbeitung
+(Yannick)
 - Stop word removal
 - Stemming
 - Tokenization
+- Lemmatizing
 - (optional) Ausblick auf nicht behandeltes Thema: Normalization
+
+### Übersicht Data Mining Algorithmen
+(Sven)
+- Tabelle oder Baumdiagramm + kurze Beschreibung
+- Einordnung in usner Projekt
 
 ## Klassifikationsmethoden
 Die nachfolgenden Klassifikationsmethoden verwenden einen Trainingsdatensatz, welcher eine Liste von Tweets mit der dazugehörigen Klassifikation (positiv, negativ) enthält.

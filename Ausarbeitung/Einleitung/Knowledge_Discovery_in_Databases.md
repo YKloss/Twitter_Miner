@@ -32,32 +32,32 @@ Das *Fayyad Modell des KDD Prozesses* ist in Abbildung [1](#fig:kddprocess) darg
 *<a name="fig:kddprocess">Abbildung 1: </a>Fayyad Modell des KDD Prozesses*<sup id="fn1_3">[[1]](#fn1)</sup>
 
 #### Die Schritte im Detail
-##### 1. Problemabgrenzung
+__1. Problemabgrenzung:__
 Im ersten Schritt muss zunächst das Ziel aus der Sicht des Kunden identifiziert werden. Außerdem ist es wichtig sich mit dem jeweiligen Fachbereich vertraut zu machen.<sup id="fn1_a">[[1]](#fn1)</sup>
 
-##### 2. Auswahl der Daten
+__2. Auswahl der Daten:__
 Im zweiten Schritt wird ein Datensatz ausgewählt. Das Ziel aus Schritt eins sollte dabei beachtet werden, denn das erreichen des Zieles hängt von der Qualität des Datensatzes ab.<sup id="fn1_b">[[1]](#fn1)</sup>
 
-##### 3. Datenvorverarbeitung
+__3. Datenvorverarbeitung:__
 Im dritten Schritt werden die Daten vorverarbeitet. Unnerwünscht informationen, die die Ergebnisse des Data Minings negativ beeinflussen würden, sollten herrausgefiltert werden. In diesem Schritt sollte auch entschieden werden, wie mit fehlenden/unvolständigen Datenfeldern umgegangen wird.<sup id="fn1_c">[[1]](#fn1)</sup>
 
-##### 4. Datenreduktion und Kodierung
+__4. Datenreduktion und Kodierung:__
 Im vierten Schritt werden die Daten in eine andere Form gebacht, damit Data Mining Algorithmen sie verstehen und verarbeiten können. Dieses Verfahren wird oft auch "Kodierung", "Datenprojektion" oder "Datentransformation" genannt. Bei der Datentranformation wird i.d.R. auch eine Datenreduktion durchgeführt, bei der Daten mit geringer Aussagekraft entfernt werden. <sup id="fn1_d">[[1]](#fn1)</sup>
 
-##### 5. Auswahl der Data Mining Methode
+__5. Auswahl der Data Mining Methode:__
 Im fünften Schritt wird mit Hilfe des Ziels aus Schritt 1 eine bestimmte Data Mining Methode ausgewählt.
 Bekannte Methoden sind beispielweise die Klassifikation oder die Clusteranalyse.<sup id="fn1_e">[[1]](#fn1)</sup>
 
-##### 6. Auswahl des Data Mining Algorithmus
+__6. Auswahl des Data Mining Algorithmus:__
 Im sechsten Schritt wird innerhalb der zuvor gewählten Data Mining Methode ein Algorithmus ausgewählt. Zudem wird entschieden mit welchen Parametern dieser Algorithmus am besten aufgerufen wird.<sup id="fn1_f">[[1]](#fn1)</sup>
 
-##### 7. Data Mining
+__7. Data Mining:__
 Der siebte Schritt ist das eigendliche Data Mining.<sup id="fn1_g">[[1]](#fn1)</sup>
 
-##### 8. Interpretation der Ergebnisse
+__8. Interpretation der Ergebnisse:__
 Im achten Schritt werden die Ergebnisse des Data Mindings interpretiert. Dies kann auch eine Visualizierung umfassen.<sup id="fn1_h">[[1]](#fn1)</sup>
 
-##### 9. Anwendung des gefundenen Wissens
+__9. Anwendung des gefundenen Wissens:__
 Im neunten Schritt werden die Ergebnisse angewendet. Das bedeutet beispielsweise das Wissen in ein anderes System weiter zu geben, oder auch einfach eine Dokumentation der Ergebnisse anzufertigen.
 Weiter sollte auf Konflikte zu dem bisherigen Wissensstand geprüft werden.<sup id="fni_3">[[1]](#fn1)</sup>
 

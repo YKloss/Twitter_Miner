@@ -68,8 +68,21 @@ Genutzt wurde dazu die Implementierung des *Pegasos*<sup id="fn5_1">[[5]](#fn5)<
 
 
 #### Kernel Trick
-[TODO]
+Die Support Vector Machine, wie sie bisher besprochen wurde, kann nur Daten in zwei Klassen trennen, wenn sie linear separierbar sind. Das wird erreicht, indem eine Hyperebene konstruiert wird. Linear separierbar bedeudet, dass es sich immer um eine gerade Ebene handeln muss. 
+Im zweidimensionalen Raum ist eine Hyperebene eine Gerade. Abbildung [4](#fig:kerneltrick) stellt das Problem gut dar. Links ist eine Menge von Datenpunkten im zweidimensionalen Raum dargestellt, die zu zwei verschiedenen Klassen gehören. Diese Daten lassen sich beispielweise mit einem Kreis in zwei Klassen trennen. Eine Support Vector Machine könnte diese Daten nicht klassifizieren, da sich die Daten nicht mit einer Gerade trennen lassen.<sup id="fn7_1">[[7]](#fn7)</sup> 
 
+Doch mit dem sogenannten Kernel Trick ist dies trotzdem möglich. Die Idee dabei ist, dem Merkmalsraum eine weitere Dimension hinzuzufügen. Auf dem linken Bild befinden sich die Datenpunkte im zweidimensionalen Raum. Das rechte Bild zeigt die gleichen Datenpunkte im dreidimensionalen Raum. Gut zu erkennen ist, dass sich die Daten nach der transformation linear separieren lassen. Dadruch lässt sich auch die Support Vector Machine auf dieses Problem anwenden.<sup id="fn7_2">[[7]](#fn7)</sup> 
+
+Die Datenpunkte lassen sich auf verschiedene Weisen in eine höhere Dimension projezieren.
+In dem Beispiel aus Abbildung [4](#fig:kerneltrick) wurden die drei neuen Dimensionen wie folgt berechnet:<sup id="fn7_3">[[7]](#fn7)</sup> 
+
+<a name="eq:kernel">Formel 8: </a>![](https://latex.codecogs.com/gif.latex?f_1=x^2_1,f_2=x^2,f_3=\sqrt{2}x_1x_2)
+
+Ein weiterer Vorteil des Kernel Tricks ist, dass die berechnung sehr effizient ist. Die Berechnung der Hyperebene kann in einem höherdimensionalen Raum durchgeführt werden, ohne die einzelnen Datenpunkte in diesen Raum zu projezieren.<sup id="fn7_4">[[7]](#fn7)</sup> 
+
+![](https://raw.githubusercontent.com/YKloss/Twitter_Miner/dbeneker/img/Kerneltrick.png)
+
+*<a name="fig:kerneltrick">Abbildung 4: </a>Kernel Trick grafisch dargestellt: (a) Daten im zweidimensionalen Raum, (b) Daten projiziert in den dreidimensionalen Raum*<sup id="fn7_5">[[7]](#fn7)</sup>
 ___
 
 <b id="fn1"></b>1. https://de.wikipedia.org/wiki/Support_Vector_Machine [↩](#fn1_1)[↩](#fn1_2)
@@ -83,3 +96,5 @@ ___
 <b id="fn5"></b>5. Shalev-Shwartz, Shai, et al. "Pegasos: Primal estimated sub-gradient solver for svm." Mathematical programming 127.1 (2011): 3-30. [↩](#fn5_1)
 
 <b id="fn6"></b>6. http://scikit-learn.org/stable/modules/sgd.html [↩](#fn6_1)
+
+<b id="fn7"></b>7. Russell, S., & Norvig, P. (2009). Artificial Intelligence: A Modern Approach. Prentice Hall (Third edit). Pearson. [↩](#fn7_1)[↩](#fn7_2)[↩](#fn7_3)[↩](#fn7_4)[↩](#fn7_5)

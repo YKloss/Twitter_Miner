@@ -23,7 +23,7 @@ Der nachfolgende Pseudocode zeigt einen generischen Trainings Algorithmus für d
 &nbsp;&nbsp;Label each leaf node with its dominant class;  
 **end**
 
-Nachdem der Decision Tree erstellt wurde, wird dieser benutzt um eine Zielvariable von einer Input Datenmenge zu bestimmen. Der Decision Tree wird dabei von oben nach unten traversiert bis ein Blattknoten erreicht wird. Die nachfolgende Abbildung illustriert beispielhaft einen Decision-Tree.
+Nachdem der Decision Tree erstellt wurde, wird dieser benutzt um eine Zielvariable von einer Input Datenmenge zu bestimmen. Der Decision Tree wird dabei von oben nach unten traversiert bis ein Blattknoten erreicht wird. Die nachfolgende Abbildung illustriert beispielhaft einen Decision Tree.
 
 ![](/img/decision_tree.PNG)  
 *Decision-Tree für ein Kredit Beispiel. <sup id="fn2_1">[[2]](#fn2)*

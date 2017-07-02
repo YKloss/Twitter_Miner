@@ -10,7 +10,7 @@ Für das kommende Beispiel werden die folgenden, beispielhaften, Trainingsdaten 
 | Sample 1      | 0             | 0          | 0      |
 | Sample 2      | 1             | 1          | 1      |
 
-Der nachfolgende Code-Abschnitt implementiert einen Decision-Tree mit dem Gini-Index als Splitkriterium. Der Code-Abschnitt zeigt das Trainieren des Decision-Trees mit den bereits aufgeführten Trainingsdaten. Variable x ist die _samples x features_ Matrix und y ist ein Array mit den zugewiesenen Klassen. Beispielsweise ist y[0] = 0 die Klasse des Samples x[0] mit den Features x[0][0] = 0 und x[0][1] = 0.
+Der nachfolgende Code-Abschnitt implementiert einen Decision Tree mit dem Gini-Index als Splitkriterium. Der Code-Abschnitt zeigt das Trainieren des Decision Trees mit den bereits aufgeführten Trainingsdaten. Variable x ist die _samples x features_ Matrix und y ist ein Array mit den zugewiesenen Klassen. Beispielsweise ist y[0] = 0 die Klasse des Samples x[0] mit den Features x[0][0] = 0 und x[0][1] = 0.
 > from sklearn import tree  
 x = [[0, 0],  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1, 1]]  
@@ -18,12 +18,12 @@ y = [0, 1]
 clf = tree.DecisionTreeClassifier(criterion='gini')  
 clf = clf.fit(x, y)
 
-Mit dem nächsten Code-Abschnitt wird für ein drittes Sample die Klasse mit dem trainierten Decision-Tree vorhergesagt.
+Mit dem nächsten Code-Abschnitt wird für ein drittes Sample die Klasse mit dem trainierten Decision Tree vorhergesagt.
 > result = clf.predict([[1, 1]])  
 print(result)  
 -> Ausgabe: [1]
 
-## Decision-Tree für Sentimentanalyse
+## Decision Tree für Sentimentanalyse
 Im Bezug auf das Projekt wird für die Variable x (_samples x features_ Matrix) der Output des Kapitels _Datenvorverarbeitung_ vorgestellten Verfahrens verwendet. Variable y (Klassenbezeichnungen) sind die Klassifizierungen der Trainingsdaten.
 > from sklearn import tree  
 vectorizer = _<siehe Kapitel Datenvorbereitung!>  

@@ -24,7 +24,9 @@ Der nachfolgende Pseudocode zeigt einen generischen Trainingsaalgorithmus für d
 &nbsp;&nbsp;Label each leaf node with its dominant class;  
 **end**
 
-Nachdem der Decision Tree erstellt wurde, wird dieser benutzt um eine Zielvariable von einer Input Datenmenge zu bestimmen. Der Decision Tree wird dabei von oben nach unten traversiert bis ein Blatt-Knoten erreicht wird.
+Nachdem der Decision Tree erstellt wurde, wird dieser benutzt um eine Zielvariable von einer Input Datenmenge zu bestimmen. Der Decision Tree wird dabei von oben nach unten traversiert bis ein Blatt-Knoten erreicht wird. Die nachfolgende Abbildung illustiert beispielhaft einen Decision-Tree.
+
+![](/img/decision_tree.PNG)
 
 
 ## Split-Kriterien

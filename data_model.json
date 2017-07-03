@@ -14,7 +14,7 @@
     ]
   },
   "tweets": [
-    { "author": "SPIEGELONLINE", "text": "...", "bayes": 0.5, "svm": 0.7, "tree": 0.1 },
+    { "author": "SPIEGELONLINE", "text": "...", "bayes": 1, "svm": 0, "tree": 0 },
     ...
   ],
   "overall_sentiment": 0.5

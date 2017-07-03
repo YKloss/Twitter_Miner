@@ -17,7 +17,7 @@ def train():
     svd.save()
 
     #Predict a sample text
-    print svd.predict("This movie is bullshit!")
+    print(svd.predict("This movie is bullshit!"))
 
 
 def main():

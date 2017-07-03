@@ -10,7 +10,7 @@ class Dataloader():
 
     def load_sentiment_analysis_dataset(self):
         """
-        Soruce: http://thinknook.com/twitter-sentiment-analysis-training-corpus-dataset-2012-09-22/
+        Source: http://thinknook.com/twitter-sentiment-analysis-training-corpus-dataset-2012-09-22/
         1 = positive
         0 = negative
         :return:
@@ -18,7 +18,7 @@ class Dataloader():
         logger.debug("Loading Sentiment Analysis Dataset")
         my_path = os.path.abspath(os.path.dirname(__file__))
         path = os.path.join(my_path, "datasets/sentiment_analysis_dataset.csv")
-        with open(path) as f:
+        with open(path, encoding='utf-8') as f:
             csvreader = csv.reader(f)
             next(csvreader) # skip header
             data = [(line[3],line[1]) for line in csvreader]

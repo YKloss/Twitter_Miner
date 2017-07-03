@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask_socketio import SocketIO,emit
 from flask import Flask
 from algorithems.svd import SupportVectorMachine

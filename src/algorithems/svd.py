@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import SGDClassifier
 from sklearn.pipeline import Pipeline
@@ -5,6 +6,7 @@ import numpy as np
 import logging
 import pickle
 import os
+import codecs
 
 logger = logging.getLogger(__name__)
 
@@ -15,7 +17,7 @@ class SupportVectorMachine():
 
     def train(self, texts, classes):
         logger.debug("Start training...")
-        model = Pipeline([('vect', TfidfVectorizer()),
+        model = Pipeline([('vect', TfidfVectorizer(max_df=0.95, min_df=2, max_features=6000, decode_error='ignore')),
                           ('clf', SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3, n_iter=5, random_state=42)),
                           ])
         self.classificator = model.fit(texts, classes)

@@ -4,10 +4,6 @@
     vertical-align: middle">
         <p style="display: table-cell; vertical-align: middle;">Hashtag#Analysis</p>
     </div>
-
-    <!--<div class="white-round" style="float: right; height: 70px;">-->
-    <!--<img src="../images/HA_Logo_yellow_Claim_left.png" style="max-width: 100%; max-height: 100%"/>-->
-    <!--</div>-->
 </header>
 
 
@@ -41,21 +37,41 @@
         </li>
     </ul>
 
-    <hr style="margin-bottom: 10px">
+</div>
+
+<!-- ################################################################################### -->
+
+<div id="main">
+
+  <!-- control-pane: Left-side of the screen -->
+  <control-pane></control-pane>
+
+  <!-- data-pane: Right-side of the screen-->
+  <data-pane></data-pane>
 
 
-    <ul>
-        <li><a [routerLink]="['/terms']" routerLinkActive="active route-activated">Important
-            Terms</a></li>
-        <li><a [routerLink]="['/sentiment']" routerLinkActive="active route-activated">Sentiment
-            Analysis</a></li>
-        <li><a [routerLink]="['/topics']" routerLinkActive="active route-activated">Topic
-            Modeling</a></li>
-        <li style="float: right"><a [routerLink]="['/information']" routerLinkActive="active route-activated">Information</a>
-        </li>
-    </ul>
+  <!--<div id="control-pane" class="white-round" style="position: relative">-->
+    <!--<li *ngIf="showSpinner" style="height: 80%; width: 100%; display: flex; align-items: center; justify-content: center;">-->
+      <!--<i class="fa fa-spinner fa-spin" style="font-size:100px"></i>-->
+    <!--</li>-->
+  <!--</div>-->
+
+  <!--&lt;!&ndash; action-pane: Right-side of the Dashboard &ndash;&gt;-->
+  <!--<div id="action-pane" class="white-round">-->
+    <!--<li *ngIf="showSpinner" style="height: 80%; width: 100%; display: flex; align-items: center; justify-content: center;">-->
+      <!--<i class="fa fa-spinner fa-spin" style="font-size:100px"></i>-->
+    <!--</li>-->
+    <!--<canvas baseChart *ngIf="rerender && datasets.length > 0"-->
+            <!--class="chart"-->
+            <!--[datasets]="datasets"-->
+            <!--[labels]="labels"-->
+            <!--[options]="options"-->
+            <!--[chartType]="'line'">-->
+    <!--</canvas>-->
+    <!--<p *ngIf="overallSentiment != ''">Overall Sentiment: {{overallSentiment}}</p>-->
+
+  <!--</div>-->
+
 
 </div>
 
-
-<router-outlet></router-outlet>

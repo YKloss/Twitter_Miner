@@ -2,25 +2,24 @@ import {NgModule}      from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent}  from './app.component';
-import {AppRoutingModule} from './app-routing.module';
-import {InformationModule} from './information/information.module';
-import {TermsModule} from './terms/terms.module';
-import {SentimentModule} from './sentiment/sentiment.module';
-import {TopicsModule} from './topics/topics.module';
+// import {AppRoutingModule} from './app-routing.module';
 import {HttpModule} from '@angular/http';
 import {TweetService} from './tweet.service';
 import { FormsModule } from '@angular/forms';
 
+import {ChartsModule} from 'ng2-charts';
+import {SentimentComponent} from './sentiment.component';
+import {ControlComponent} from './control.component';
+
 @NgModule({
     imports: [
         BrowserModule,
-        AppRoutingModule,
-        TermsModule,
-        SentimentModule,
-        TopicsModule,
-        InformationModule,
+        // AppRoutingModule,
         HttpModule,
-        FormsModule],
+        FormsModule,
+        ChartsModule,
+        SentimentComponent,
+        ControlComponent],
     declarations: [AppComponent],
     providers: [TweetService],
     bootstrap: [AppComponent]

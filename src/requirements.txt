@@ -7,4 +7,4 @@ tweepy=3.5.0
 bs4=0.0.1
 flask_cors
 nltk
-
+tqdm

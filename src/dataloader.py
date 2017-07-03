@@ -6,14 +6,24 @@ import random
 import io
 import codecs
 from preprocessing.preprocessing import TextPreprocessing
+import copy_reg, types
 
 logger = logging.getLogger(__name__)
+
+
+def _pickle_method(m):
+    if m.im_self is None:
+        return getattr, (m.im_class, m.im_func.func_name)
+    else:
+        return getattr, (m.im_self, m.im_func.func_name)
+copy_reg.pickle(types.MethodType, _pickle_method)
 
 
 class Dataloader():
 
     def __init__(self):
         self.home_path = os.path.abspath(os.path.dirname(__file__))
+
 
     def _load_michigan_and_sanders_dataset(self):
         """
@@ -70,7 +80,18 @@ class Dataloader():
     def load_all_datasets(self):
         data_1 = self._load_michigan_and_sanders_dataset()
         data_2 = self._load_sentiment140_dataset()
-        data = self._preprocess_dataset(data_1+data_2)
+        import multiprocessing as mp
+        import tqdm
+        pool = mp.Pool(processes=4)
+        preprocessor = TextPreprocessing()
+        logger.debug("Start preprocessing...")
+        #data = pool.map(preprocessor.preprocess_text, data_1[:100000])
+        all_data = data_1+data_2
+        data_iter = pool.imap_unordered(preprocessor.preprocess_text, all_data, chunksize=100)
+        data = []
+        for items in tqdm.tqdm(data_iter, total=len(all_data)):
+            data.append(items)
+        logger.debug("Preprocessing finished.")
         return self._split_dataset(self._shuffle_data(data))
 
     def _preprocess_dataset(self, data):

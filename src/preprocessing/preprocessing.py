@@ -41,6 +41,7 @@ class TextPreprocessing:
 
     def remove_html_tags(self, text):
         logging.getLogger("chardet.charsetprober").setLevel(logging.INFO)
+        logging.getLogger("chardet.universaldetector").setLevel(logging.INFO)
         text_without_html_tags = BeautifulSoup(text, "html.parser").get_text()
         return text_without_html_tags
 
@@ -108,7 +109,8 @@ class TextPreprocessing:
         filtered_tokens = [token for token in tokens if token not in string.punctuation]
         return filtered_tokens
 
-    def preprocess_text(self, text):
+    def preprocess_text(self, item):
+        text = item[0]
         text = self.remove_html_tags(text)
         text = self.expand_contractions(text, CONTRACTION_MAP)
         tokens = self.tokenize_text(text)
@@ -116,7 +118,7 @@ class TextPreprocessing:
         tokens = self.stem_text(tokens)
         tokens = self.remove_special_characters(tokens)
         text = ' '.join(tokens)
-        return text
+        return (text,item[1])
 
 
 

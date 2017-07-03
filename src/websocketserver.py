@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask_socketio import SocketIO,emit
 from flask import Flask
-from algorithems.svd import SupportVectorMachine
+from algorithems.classifier import CombinedClassifier
 from twitterconnector import TwitterConnector
 
 app = Flask(__name__)
@@ -9,13 +9,13 @@ socketio = SocketIO(app, async_mode='gevent', debug=True, host="0.0.0.0", port=5
 
 
 def setup(app):
-    svd = SupportVectorMachine()
+    model = CombinedClassifier()
     try:
-        #svd.load()
+        #model.load()
         pass
     except Exception as e:
         app.logger.error(e.message)
-    app.config['SVD'] = svd
+    app.config['model'] = model
 setup(app)
 
 
@@ -26,8 +26,8 @@ def test_message(message):
     tweets = twitterconnector.get_tweets(hashtag)
 
     tweet_texts = [t.text for t in tweets]
-    svd = app.config['SVD']
-    svd_result = svd.predict_all(tweet_texts)
+    model = app.config['model']
+    result = model.predict_all(tweet_texts)
 
 
     result_json = []

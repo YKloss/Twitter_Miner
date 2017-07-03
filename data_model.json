@@ -6,7 +6,7 @@ Payload: '{"hashtag": "brexit", "number_of_tweets": 500}'
   
 2.
 Event: 'data_response'
-Paload:'
+Payload:'
 {
   "graph_data": {
     "dataset": [

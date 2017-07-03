@@ -72,6 +72,6 @@ class Dataloader():
         return self._split_dataset(self._shuffle_data(data_1+data_2))
 
     def load_small_fake_data(self):
-        texts = ["This is super!", "This is very bad."]
-        classes = [1, 0]
-        return texts, classes
+        texts = ["This is super!", "This is very bad.", "Another bad text example."]
+        classes = [1, 0, 0]
+        return texts, classes, texts, classes

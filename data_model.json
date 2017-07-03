@@ -1,3 +1,12 @@
+Socket.io Data Model:
+
+1.
+Event: 'data_request'
+Payload: '{"hashtag": "brexit", "number_of_tweets": 500}'
+  
+2.
+Event: 'data_response'
+Paload:'
 {
   "graph_data": {
     "dataset": [
@@ -19,4 +28,4 @@
   ],
   "overall_sentiment": 0.5
 }
-
+'

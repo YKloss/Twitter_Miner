@@ -10,7 +10,7 @@ class TwitterConnector():
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
         self.api = tweepy.API(auth)
 
-    def get_tweets(self, hashtag):
-        tweets = tweepy.Cursor(self.api.search, q=hashtag).items()
+    def get_tweets(self, hashtag, itemLimit):
+        tweets = tweepy.Cursor(self.api.search, q=hashtag, lang="en").items(itemLimit)
         #return complete tweet, not only the text
         return tweets 

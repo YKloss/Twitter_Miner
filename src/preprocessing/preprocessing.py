@@ -1,20 +1,37 @@
+# -*- coding: utf-8 -*-
 import re
 import string
-
-import nltk
+import io
+import os
 from bs4 import BeautifulSoup
 from nltk.stem.snowball import SnowballStemmer
 from nltk.tokenize import TweetTokenizer
+import logging
 
 from contractions import CONTRACTION_MAP
 
+logger = logging.getLogger(__name__)
+
+class Tokenizer:
+    def __init__(self):
+        self.tokenizer = TweetTokenizer(preserve_case=False)
+
+    def __call__(self, texts):
+        words = self.tokenizer.tokenize(texts)
+        return words
+
+    def tokenize(self, texts):
+        words = self.tokenizer.tokenize(texts)
+        return words
+
 
 class TextPreprocessing:
+
     def __init__(self):
-        self.stopword_list = nltk.corpus.stopwords.words('english')
-        self.stopword_list = [x for x in self.stopword_list if x != 'not']
-        self.stopword_list.extend(('rt', 'via', '…'))
-        self.tknzr = TweetTokenizer(preserve_case=False)
+        this_path = os.path.abspath(os.path.dirname(__file__))
+        stopwords_path = os.path.join(this_path, "stopwords.txt")
+        self.stopword_list = set(line.strip() for line in io.open(stopwords_path, "r", encoding="utf-8"))
+        self.tknzr = Tokenizer()
         self.stemmer = SnowballStemmer("english")
 
     def tokenize_text(self, text):
@@ -23,15 +40,13 @@ class TextPreprocessing:
         return tokens
 
     def remove_html_tags(self, text):
+        logging.getLogger("chardet.charsetprober").setLevel(logging.INFO)
         text_without_html_tags = BeautifulSoup(text, "html.parser").get_text()
         return text_without_html_tags
 
-    def stem_text(self, text):
-        tokens = self.tokenize_text(text)
+    def stem_text(self, tokens):
         stemmed_tokens = [self.stemmer.stem(token) for token in tokens]
-        filtered_text = ' '.join(stemmed_tokens)
-
-        return filtered_text
+        return stemmed_tokens
 
     def expand_contractions(self, text, contraction_mapping):
         contractions_pattern = re.compile('({})'.format('|'.join(contraction_mapping.keys())),
@@ -86,33 +101,23 @@ class TextPreprocessing:
 #     return lemmatized_text
 
 
-    def remove_special_characters(self, text):
-        tokens = self.tokenize_text(text)
+    def remove_special_characters(self, tokens):
         # pattern = re.compile('[{}]'.format(re.escape(string.punctuation)))
         # filtered_tokens = filter(None, [pattern.sub('', token) for token in tokens])
         # filtered_text = ' '.join(filtered_tokens)
-
         filtered_tokens = [token for token in tokens if token not in string.punctuation]
-        filtered_text = ' '.join(filtered_tokens)
-
-        return filtered_text
-
-    def remove_stopwords(self, text):
-        tokens = self.tokenize_text(text)
-        filtered_tokens = [token for token in tokens if token not in self.stopword_list]
-        filtered_text = ' '.join(filtered_tokens)
-        return filtered_text
+        return filtered_tokens
 
     def preprocess_text(self, text):
-
         text = self.remove_html_tags(text)
         text = self.expand_contractions(text, CONTRACTION_MAP)
-        text = self.stem_text(text)
-        text = self.remove_special_characters(text)
-        text = self.remove_stopwords(text)
+        tokens = self.tokenize_text(text)
 
+        tokens = self.stem_text(tokens)
+        tokens = self.remove_special_characters(tokens)
+        text = ' '.join(tokens)
+        return text
 
-        return self.tokenize_text(text)
 
 
 # preprocess = TextPreprocessing()

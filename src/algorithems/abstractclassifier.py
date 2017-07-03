@@ -2,13 +2,24 @@ import logging
 import pickle
 import os
 import numpy as np
-
+from sklearn.feature_extraction.text import TfidfVectorizer
+from src.preprocessing.preprocessing import Tokenizer
+import io
 
 class AbstractClassifier:
 
     def __init__(self):
         self.classificator = None
         self.logger = logging.getLogger(__name__)
+        this_path = os.path.abspath(os.path.dirname(__file__))
+        stopwords_path = os.path.join(this_path, "../preprocessing/stopwords.txt")
+        stopword_list = set(line.strip() for line in io.open(stopwords_path, "r", encoding="utf-8"))
+        self.vectorizer = TfidfVectorizer(max_df=0.95,
+                                          min_df=2,
+                                          max_features=6000,
+                                          decode_error='ignore',
+                                          stop_words=stopword_list,
+                                          tokenizer=Tokenizer())
 
     def train(self, texts, classes):
         # implement it in the derived class

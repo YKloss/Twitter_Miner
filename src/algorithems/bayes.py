@@ -1,4 +1,3 @@
-from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 import logging
@@ -10,11 +9,12 @@ logger = logging.getLogger(__name__)
 class NaiveBayes(AbstractClassifier):
 
     def __init__(self):
+        AbstractClassifier.__init__(self)
         self.logger = logging.getLogger(__name__)
 
     def train(self, texts, classes):
         self.logger.debug("Start training...")
-        model = Pipeline([('vect', TfidfVectorizer(max_df=0.95, min_df=2, max_features=6000, decode_error='ignore')),
+        model = Pipeline([('vect', self.vectorizer),
                           ('bayeszz', MultinomialNB()),
                           ])
         #model = Pipeline([('vect', TfidfVectorizer()),

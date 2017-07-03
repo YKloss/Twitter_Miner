@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn import tree
 from sklearn.pipeline import Pipeline
 import logging
@@ -16,7 +15,7 @@ class DecisionTree(AbstractClassifier):
 
     def train(self, texts, classes):
         logger.debug("Start training...")
-        model = Pipeline([('vect', TfidfVectorizer(max_df=0.95, min_df=2, max_features=6000, decode_error='ignore')),
+        model = Pipeline([('vect', self.vectorizer),
                           ('clf', tree.DecisionTreeClassifier()),
                           ])
         self.classificator = model.fit(texts, classes)

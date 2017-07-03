@@ -5,6 +5,7 @@ import logging
 import random
 import io
 import codecs
+from preprocessing.preprocessing import TextPreprocessing
 
 logger = logging.getLogger(__name__)
 
@@ -69,9 +70,27 @@ class Dataloader():
     def load_all_datasets(self):
         data_1 = self._load_michigan_and_sanders_dataset()
         data_2 = self._load_sentiment140_dataset()
-        return self._split_dataset(self._shuffle_data(data_1+data_2))
+        data = self._preprocess_dataset(data_1+data_2)
+        return self._split_dataset(self._shuffle_data(data))
+
+    def _preprocess_dataset(self, data):
+        logger.debug("Start preprocessing...")
+        preprocessor = TextPreprocessing()
+        processed_data = []
+        actual = 0
+        percentage = -1
+        for tup in data:
+            processed_data.append((preprocessor.preprocess_text(tup[0]), tup[1]))
+            percentage_new = int(100.0*float(actual)/len(data))
+            if percentage_new > percentage:
+                logger.debug("preprocessing... "+str(percentage_new)+"% ("+str(actual)+"/"+str(len(data))+")")
+                percentage = percentage_new
+            actual += 1
+        logger.debug("Preprocessing finished.")
+        return data
+
 
     def load_small_fake_data(self):
-        texts = ["This is super!", "This is very bad.", "Another bad text example."]
-        classes = [1, 0, 0]
+        texts = ["This is super!", "This is very bad.", "Another bad text example.", "Another good text example bla blub."]
+        classes = [1, 0, 0, 1]
         return texts, classes, texts, classes

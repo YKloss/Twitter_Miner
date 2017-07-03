@@ -3,7 +3,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import SGDClassifier
 from sklearn.pipeline import Pipeline
 import logging
-from abstractclassifier import AbstractClassifier
+from algorithems.abstractclassifier import AbstractClassifier
 
 
 class SupportVectorMachine(AbstractClassifier):

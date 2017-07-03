@@ -3,7 +3,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn import tree
 from sklearn.pipeline import Pipeline
 import logging
-from abstractclassifier import AbstractClassifier
+from algorithems.abstractclassifier import AbstractClassifier
 
 logger = logging.getLogger(__name__)
 

@@ -2,6 +2,7 @@
 import logging
 from dataloader import Dataloader
 from algorithems.svd import SupportVectorMachine
+from algorithems.bayes import NaiveBayes
 
 
 def train():
@@ -9,6 +10,7 @@ def train():
     dataloader = Dataloader()
     train_texts, train_classes, test_texts, test_classes = dataloader.load_all_datasets()
 
+    #SVM:
     #Train a support vector machine
     svd = SupportVectorMachine()
     svd.train(train_texts, train_classes)
@@ -16,6 +18,12 @@ def train():
     svd.eval(test_texts, test_classes)
     #Save trained model
     svd.save()
+    
+    #BAYES:
+    bayes = NaiveBayes()
+    bayes.train(train_texts, train_classes)
+    bayes.eval(test_texts, test_classes)
+    bayes.save()
 
 
 def main():

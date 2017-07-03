@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from nltk.stem.snowball import SnowballStemmer
 from nltk.tokenize import TweetTokenizer
 
-from preprocessing.contractions import CONTRACTION_MAP
+from contractions import CONTRACTION_MAP
 
 
 class TextPreprocessing:
@@ -103,23 +103,19 @@ class TextPreprocessing:
         filtered_text = ' '.join(filtered_tokens)
         return filtered_text
 
-    def preprocess_text(self, corpus, tokenize=False):
-        normalized_corpus = []
-        for text in corpus:
-            text = self.remove_html_tags(text)
-            text = self.expand_contractions(text, CONTRACTION_MAP)
-            text = self.stem_text(text)
-            text = self.remove_special_characters(text)
-            text = self.remove_stopwords(text)
-            normalized_corpus.append(text)
-            if tokenize:
-                text = self.tokenize_text(text)
-                normalized_corpus.append(text)
+    def preprocess_text(self, text):
 
-        return normalized_corpus
+        text = self.remove_html_tags(text)
+        text = self.expand_contractions(text, CONTRACTION_MAP)
+        text = self.stem_text(text)
+        text = self.remove_special_characters(text)
+        text = self.remove_stopwords(text)
+
+
+        return self.tokenize_text(text)
 
 
 # preprocess = TextPreprocessing()
 #
-# normalized_text = preprocess.preprocess_text(["RT This is a <b>text!</b> Is that great? @-User -> :) $199, that's good. You can't win. I'm hoping you're in a good mood :P !!!"])
-# print(normalized_text)
+# tokens = preprocess.preprocess_text("RT This is a <b>text!</b> Is that great? @-User -> :) $199, that's good. You can't win. I'm hoping you're in a good mood :P !!!")
+# print(tokens)

@@ -4,3 +4,7 @@ flask=0.12.2
 flask-socketio
 gevent=1.2.1
 tweepy=3.5.0
+bs4=0.0.1
+flask_cors
+nltk
+

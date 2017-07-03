@@ -1,0 +1,61 @@
+<!-- Header -->
+<header>
+    <div class="white-round logo" style="margin-bottom: 0px; margin-top: 5px; float: left; height: 50px; text-align: center; display: table;
+    vertical-align: middle">
+        <p style="display: table-cell; vertical-align: middle;">Hashtag#Analysis</p>
+    </div>
+
+    <!--<div class="white-round" style="float: right; height: 70px;">-->
+    <!--<img src="../images/HA_Logo_yellow_Claim_left.png" style="max-width: 100%; max-height: 100%"/>-->
+    <!--</div>-->
+</header>
+
+
+<div id="header-nav" class="white-round" style="margin-top: 0px">
+    <ul>
+        <li style="">
+            <label for="hashtag" style="font-weight: inherit; color: white;">Hashtag:</label>
+            <input [(ngModel)]="hashtagInput" type="text" class="form-control" id="hashtag" style="display: inherit; height: 30px; width: 120px;">
+        </li>
+
+        <li style="">
+            <label for="ip" style="font-weight: inherit; color: white;">Tweets:</label>
+            <input [(ngModel)]="itemsInput" type="text" class="form-control" id="ip" style="display: inherit; height: 30px; width: 60px;">
+        </li>
+
+        <li>
+            <button class="info-action btn" (click)="getNewTweets()">
+                Get new tweets
+            </button>
+        </li>
+
+        <li *ngIf="showSpinner">
+            <i class="fa fa-spinner fa-spin" style="font-size:22px"></i>
+        </li>
+
+        <li *ngIf="hashtag != undefined">
+            <a style="float: right; pointer-events: none; cursor: default; padding-top: 8px;"><i>Current Tweets from: #{{hashtag}}</i></a>
+        </li>
+        <li *ngIf="hashtag == undefined">
+            <a style="color: red; float: right; pointer-events: none; cursor: default; padding-top: 8px;"><i>Current Tweets from: -</i></a>
+        </li>
+    </ul>
+
+    <hr style="margin-bottom: 10px">
+
+
+    <ul>
+        <li><a [routerLink]="['/terms']" routerLinkActive="active route-activated">Important
+            Terms</a></li>
+        <li><a [routerLink]="['/sentiment']" routerLinkActive="active route-activated">Sentiment
+            Analysis</a></li>
+        <li><a [routerLink]="['/topics']" routerLinkActive="active route-activated">Topic
+            Modeling</a></li>
+        <li style="float: right"><a [routerLink]="['/information']" routerLinkActive="active route-activated">Information</a>
+        </li>
+    </ul>
+
+</div>
+
+
+<router-outlet></router-outlet>

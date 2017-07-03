@@ -1,0 +1,279 @@
+﻿/*
+    CSS rule set for the Micamu project
+*/
+
+body {
+  /*min-height:100%;*/
+  height: 100vh;
+  margin: 0;
+  padding: 0 2.5%;
+  background-color: #CED7DE; /* Harting yellow */
+}
+
+html, body {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  /*padding: 0;*/
+  height: 100%;
+}
+
+header {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  /*margin: 1em 0;*/
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding: 0;
+  width: 100%;
+}
+
+#little-grey-text {
+  color: #d3d3d3
+}
+
+/*label {*/
+  /*width: 55px;*/
+  /*text-align: right;*/
+  /*margin-right: 10px;*/
+/*}*/
+
+.container-control-panel {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+#header-nav {
+  list-style: none;
+  background: #7f7f7f;
+  margin-bottom: 0px;
+  padding-bottom: 5px;
+  padding-top: 10px;
+  /*height: 26px;*/
+  /*padding: 10px 0 0 20px;*/
+}
+
+#header-nav ul {
+  padding-left: 0px;
+}
+
+#header-nav ul:first-child li {
+  display: inline;
+  padding: 0 10px;
+}
+
+#header-nav ul:last-child li {
+  display: inline;
+  padding: 0 10px;
+  border-left: solid 1px white;
+}
+
+#header-nav ul:last-child li:first-child {
+  border-left: none;
+}
+
+
+#header-nav li a {
+  color: #FEFEFE;
+  text-decoration: none;
+  font: normal 14px / 18px Arial,'Helvetica Neue',Helvetica,sans-serif;
+}
+
+#header-nav li a:hover {
+  color: #FFD300;
+}
+
+#header-nav li .route-activated {
+  color: #FFD300;
+}
+
+li {
+  display: inline;
+}
+
+.white-round {
+  border-radius: 10px;
+  background-color: white;
+  margin: 10px;
+  padding: 10px;
+}
+
+.logo {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 25px;
+  font-style: italic;
+  color: #FFD300;
+  font-weight: bold
+}
+
+#main {
+  height: calc(100% - 160px);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding-bottom: 20px;
+}
+
+#control-pane {
+  flex: 0 0 250px;
+  /*width: 350px;*/
+  /*height: 100%;*/
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  margin-bottom: 25px;
+}
+
+#list-actions {
+  width: 100%;
+  height: auto;
+  padding-bottom: 7px;
+  border-bottom: 1px solid black;
+  margin-bottom: 7px;
+  display: flex;
+}
+
+.list-action:last-child {
+  margin-left: 5px;
+}
+
+.device-item {
+  margin: 5px;
+  padding: 5px;
+  border: 5px solid #FFD300; /* Harting yellow */
+  border-radius: 5px;
+  font-size: 16pt;
+  display: flex;
+  align-items: center;
+}
+
+.device-item > *:not(:last-child) {
+  margin: 0 5px;
+}
+
+/* Highlights the selected device item */
+.selected {
+  margin: 2px;
+  border-width: 8px;
+}
+
+#action-pane {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow-y: auto;
+  margin-bottom: 25px;
+}
+
+#info-actions {
+  width: 100%;
+  height: auto;
+  padding-bottom: 7px;
+  border-bottom: 1px solid black;
+  margin-bottom: 7px;
+  display: flex;
+}
+
+#info-actions > *:not(:first-child) {
+  margin-left: 5px;
+}
+
+.info-message {
+  margin-top: 25px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14pt;
+}
+
+.container-item {
+  margin: 5px;
+  padding: 5px;
+  flex: 1 0 150px;
+  height: 150px;
+  border: 5px solid #FFD300; /* Harting yellow */
+  border-radius: 5px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+#action-pane2 {
+  display: block;
+}
+
+.container-item2 {
+  position: relative;
+  width: 180px;
+  height: 150px;
+  border: 5px solid #FFD300; /* Harting yellow */
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-right: 40px;
+  margin-bottom: 20px;
+  top: 0px;
+  display: inline-block;
+  /*overflow: hidden;*/
+}
+
+/* Centers and sizes the title of a container item */
+.container-title {
+  text-align: center;
+  font-size: 16pt;
+  /*word-wrap: break-word;*/
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+/* Centers and sizes the icon of a container item */
+.container-icon {
+  margin: auto;
+  text-align: center;
+  font-size: 60pt;
+  position: relative;
+  width: 100%;
+}
+
+.container-actions {
+  margin: auto 20px;
+}
+
+.container-actions > * {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+}
+
+/*
+    Flexbox hack:
+    Creates invisible items to fill the last used row and maintain the item size from the full rows.
+    Beside their height of zero (invisibility) they act exactly like container items.
+*/
+.pseudo-item {
+  margin: 5px;
+  flex: 1 0 150px;
+  height: 0;
+  border: none;
+  box-sizing: border-box;
+}

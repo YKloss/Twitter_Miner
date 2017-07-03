@@ -1,3 +1,4 @@
 .idea
 *.pyc
 src/twitter_secrets.txt
+src/frontend/node_modules/*

@@ -22,7 +22,7 @@ class SupportVectorMachine():
         logger.debug("Finished training.")
 
     def eval(self, texts, classes):
-        ogger.debug("Start evaluating...")
+        logger.debug("Start evaluating...")
         if not self.classificator:
             raise Exception("Model not trained!")
         predicted = self.classificator.predict(texts)

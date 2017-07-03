@@ -1,7 +1,7 @@
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 import logging
-from abstractclassifier import AbstractClassifier
+from algorithems.abstractclassifier import AbstractClassifier
 
 logger = logging.getLogger(__name__)
 
@@ -15,11 +15,8 @@ class NaiveBayes(AbstractClassifier):
     def train(self, texts, classes):
         self.logger.debug("Start training...")
         model = Pipeline([('vect', self.vectorizer),
-                          ('bayeszz', MultinomialNB()),
+                          ('clf', MultinomialNB()),
                           ])
-        #model = Pipeline([('vect', TfidfVectorizer()),
-        #                  ('clf', SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3, n_iter=5, random_state=42)),
-        #                  ])
         self.classificator = model.fit(texts, classes)
         self.logger.debug("Finished training.")
 

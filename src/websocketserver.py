@@ -6,18 +6,6 @@ from twitterconnector import TwitterConnector
 import json
 from flask_cors import CORS, cross_origin
 
-def test():
-    model = CombinedClassifier()
-    model.load()
-    twitterconnector = TwitterConnector()
-    tweets = twitterconnector.get_tweets("brexit", 10)
-
-    model_result = model.predict_all([t.text for t in tweets])
-    json_result = build_respone(tweets, model_result)
-    print(json_result)
-test()
-exit()
-
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -58,38 +46,6 @@ def test_message(message):
     emit('data_response', json_result)
 
 
-def build_respone(tweets, model_result):
-    dataset_resp = []
-    tweets_resp = []
-    labels_resp = []
-
-    overall_sentiment = 0.0
-
-    for algorithm in model_result:
-        dataset_resp.append({"data":model_result[algorithm], "label": algorithm})
-
-
-    for i, tweet in enumerate(tweets):
-        new_tweet = {
-            "author":tweet.user.name,
-            "text": tweet.text
-        }
-        for algorithm in model_result:
-            new_tweet[algorithm] = model_result[algorithm][i]
-        tweets_resp.append(new_tweet)
-        labels_resp.append(tweet.time)
-
-
-    response_obj = {
-        "graph_data": {
-            "dataset": dataset_resp,
-            "labels": labels_resp
-        },
-        "tweets": tweets_resp,
-        "overall_sentiment": overall_sentiment
-    }
-    return response_obj
-
 @app.route('/<path:path>')
 @cross_origin()
 def catch_all(path):
@@ -104,6 +60,37 @@ def catch_all(path):
 @app.route("/")
 def index():
     return send_file('./frontend/src/index.html')
+
+def build_respone(tweets, model_result):
+    dataset_resp = []
+    tweets_resp = []
+    labels_resp = []
+
+    overall_sentiment = 0.0
+
+    for algorithm in model_result:
+        dataset_resp.append({"data":model_result[algorithm], "label": algorithm})
+
+    for i, tweet in enumerate(tweets):
+        new_tweet = {
+            "author":tweet.user.name,
+            "text": tweet.text
+        }
+        for algorithm in model_result:
+            new_tweet[algorithm] = model_result[algorithm][i]
+        tweets_resp.append(new_tweet)
+        labels_resp.append(int(tweet.created_at.timestamp()))
+
+
+    response_obj = {
+        "graph_data": {
+            "dataset": dataset_resp,
+            "labels": labels_resp
+        },
+        "tweets": tweets_resp,
+        "overall_sentiment": overall_sentiment
+    }
+    return response_obj
 
 if __name__ == '__main__':
     socketio.run(app)

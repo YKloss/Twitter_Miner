@@ -1,6 +1,6 @@
-from algorithems.bayes import NaiveBayes
-from algorithems.svm import SupportVectorMachine
-from algorithems.tree import DecisionTree
+from src.algorithems.bayes import NaiveBayes
+from src.algorithems.svm import SupportVectorMachine
+from src.algorithems.tree import DecisionTree
 import logging
 
 logger = logging.getLogger(__name__)
@@ -34,9 +34,11 @@ class CombinedClassifier:
         results = {}
         for model in self.models:
             try:
-                results[model.get_name()] = model.predict(texts)
+                results[model.get_name()] = model.predict_all(texts)
             except Exception as e:
-                logger.error(e.message)
+                #logger.error(e.message)
+                logger.error("Fehler bei predict_all")
+                raise e
         return results
 
     def save(self):
@@ -45,6 +47,7 @@ class CombinedClassifier:
                 model.save()
             except Exception as e:
                 logger.error(e.message)
+
 
     def train_and_save(self,texts, classes):
         for model in self.models:

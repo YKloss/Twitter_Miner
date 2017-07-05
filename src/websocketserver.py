@@ -35,10 +35,9 @@ def test_message(message):
     print("number_of_tweets: " + str(number_of_tweets))
     twitterconnector = TwitterConnector()
     tweets = twitterconnector.get_tweets(hashtag, number_of_tweets)
-
     tweet_texts = [t.text for t in tweets]
     model = app.config['model']
-    model_result = model.predict_all([t.text for t in tweets])
+    model_result = model.predict_all(tweet_texts)
     json_result = build_respone(tweets,model_result)
 
 

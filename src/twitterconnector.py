@@ -12,5 +12,4 @@ class TwitterConnector():
 
     def get_tweets(self, hashtag, itemLimit):
         tweets = tweepy.Cursor(self.api.search, q=hashtag, lang="en").items(itemLimit)
-        #return complete tweet, not only the text
-        return tweets 
+        return [tweet for tweet in tweets]

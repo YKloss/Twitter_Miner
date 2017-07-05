@@ -19,7 +19,7 @@ class CombinedClassifier:
             try:
                 model.eval(texts, classes)
             except Exception as e:
-                logger.error(e.message)
+                raise e
 
     def predict(self, text):
         results = {}
@@ -27,7 +27,7 @@ class CombinedClassifier:
             try:
                 results[model.get_name()] = model.predict(text)
             except Exception as e:
-                logger.error(e.message)
+                raise e
         return results
 
     def predict_all(self, texts):
@@ -46,7 +46,7 @@ class CombinedClassifier:
             try:
                 model.save()
             except Exception as e:
-                logger.error(e.message)
+                raise e
 
 
     def train_and_save(self,texts, classes):
@@ -55,12 +55,12 @@ class CombinedClassifier:
                 model.train(texts, classes)
                 model.save()
             except Exception as e:
-                logger.error(e.message)
+                raise e
 
     def load(self):
         for model in self.models:
             try:
                 model.load()
             except Exception as e:
-                logger.error(e.message)
+                raise e
 

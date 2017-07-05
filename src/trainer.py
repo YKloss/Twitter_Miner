@@ -11,9 +11,8 @@ def train():
     #train_texts, train_classes, test_texts, test_classes = dataloader.load_small_fake_data()
 
     model = CombinedClassifier()
-    model.train(train_texts, train_classes)
+    model.train_and_save(train_texts, train_classes)
     model.eval(test_texts, test_classes)
-    model.save()
 
 
 

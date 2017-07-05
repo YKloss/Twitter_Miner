@@ -21,9 +21,6 @@ class DecisionTree(AbstractClassifier):
         self.classificator = model.fit(texts, classes)
         logger.debug("Finished training.")
 
-    def save(self):
-        AbstractClassifier.save(self, "tree.p")
-
-    def load(self):
-        AbstractClassifier.load(self, "tree.p")
+    def get_name(self):
+        return "tree"
 

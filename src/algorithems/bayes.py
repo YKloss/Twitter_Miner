@@ -20,8 +20,5 @@ class NaiveBayes(AbstractClassifier):
         self.classificator = model.fit(texts, classes)
         self.logger.debug("Finished training.")
 
-    def save(self):
-        AbstractClassifier.save(self, "bayes.p")
-
-    def load(self):
-        AbstractClassifier.load(self, "bayes.p")
+    def get_name(self):
+        return "bayes"

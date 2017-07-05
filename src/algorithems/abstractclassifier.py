@@ -49,14 +49,14 @@ class AbstractClassifier:
     def save(self):
         self.logger.debug("Saving model...")
         my_path = os.path.abspath(os.path.dirname(__file__))
-        my_path = os.path.join(my_path, "trained_models/"+self.get_name()+".p")
+        my_path = os.path.join(my_path, "trained_models", self.get_name()+".p")
         if self.classificator:
             pickle.dump(self.classificator, open(my_path, "wb"))
             self.logger.debug("Model saved.")
 
     def load(self):
         my_path = os.path.abspath(os.path.dirname(__file__))
-        my_path = os.path.join(my_path, "trained_models/"+self.get_name()+".p")
+        my_path = os.path.join(my_path, "trained_models" , self.get_name()+".p")
         if not os.path.isfile(my_path):
             raise Exception("File not found: "+my_path)
         with open(my_path, "rb") as pickle_file:

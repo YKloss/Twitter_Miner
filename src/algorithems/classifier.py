@@ -22,19 +22,19 @@ class CombinedClassifier:
                 logger.error(e.message)
 
     def predict(self, text):
-        results = []
+        results = {}
         for model in self.models:
             try:
-                results.append(model.predict(text))
+                results[model.get_name()] = model.predict(text)
             except Exception as e:
                 logger.error(e.message)
         return results
 
     def predict_all(self, texts):
-        results = []
+        results = {}
         for model in self.models:
             try:
-                results.append(model.predict(texts))
+                results[model.get_name()] = model.predict(texts)
             except Exception as e:
                 logger.error(e.message)
         return results
@@ -42,6 +42,14 @@ class CombinedClassifier:
     def save(self):
         for model in self.models:
             try:
+                model.save()
+            except Exception as e:
+                logger.error(e.message)
+
+    def train_and_save(self,texts, classes):
+        for model in self.models:
+            try:
+                model.train(texts, classes)
                 model.save()
             except Exception as e:
                 logger.error(e.message)

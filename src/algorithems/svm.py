@@ -19,8 +19,5 @@ class SupportVectorMachine(AbstractClassifier):
         self.classificator = model.fit(texts, classes)
         self.logger.debug("Finished training.")
 
-    def save(self):
-        AbstractClassifier.save(self, "svm.p")
-
-    def load(self):
-        AbstractClassifier.load(self, "svm.p")
+    def get_name(self):
+        return "svm"

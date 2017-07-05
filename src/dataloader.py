@@ -85,8 +85,9 @@ class Dataloader():
         pool = mp.Pool(processes=4)
         preprocessor = TextPreprocessing()
         logger.debug("Start preprocessing...")
-        #data = pool.map(preprocessor.preprocess_text, data_1[:100000])
-        all_data = data_1+data_2
+        #data = pool.map(preprocessor.preprocess_text, data_1[:1000])
+        all_data = data_1[:1000]
+        #all_data = data_1+data_2
         data_iter = pool.imap_unordered(preprocessor.preprocess_text, all_data, chunksize=100)
         data = []
         for items in tqdm.tqdm(data_iter, total=len(all_data)):

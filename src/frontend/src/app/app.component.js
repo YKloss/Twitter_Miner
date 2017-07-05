@@ -9,10 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
 var tweet_service_1 = require("./tweet.service");
 var AppComponent = (function () {
-    function AppComponent(router, tweetService) {
+    function AppComponent(tweetService) {
         this.tweetService = tweetService;
         this.showSpinner = false;
     }
@@ -21,7 +20,10 @@ var AppComponent = (function () {
         this.tweetService
             .getDataResponse()
             .subscribe(function (msg) {
+            console.log(JSON.stringify(msg, null, 2));
             _this.tweetService.announceNewData(msg);
+            _this.tweetService.announceNewHashtag(_this.hashtagInput);
+            _this.showSpinner = false;
         });
         this.hashtag = this.tweetService.getLastKnownHashtag();
         /* Subscribe to selection emitter */
@@ -33,7 +35,7 @@ var AppComponent = (function () {
         this.showSpinner = true;
         var request_obj = { 'hashtag': this.hashtagInput, 'number_of_tweets': Number(this.itemsInput) };
         console.log('getting tweets...');
-        this.tweetService.sendDataRequest(request_obj);
+        this.tweetService.sendDataRequest(JSON.stringify(request_obj));
     };
     return AppComponent;
 }());
@@ -42,7 +44,7 @@ AppComponent = __decorate([
         selector: 'my-app',
         templateUrl: './app.component.html',
     }),
-    __metadata("design:paramtypes", [router_1.Router, tweet_service_1.TweetService])
+    __metadata("design:paramtypes", [tweet_service_1.TweetService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

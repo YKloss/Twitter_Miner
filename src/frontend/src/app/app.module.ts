@@ -10,6 +10,10 @@ import { FormsModule } from '@angular/forms';
 import {ChartsModule} from 'ng2-charts';
 import {SentimentComponent} from './sentiment.component';
 import {ControlComponent} from './control.component';
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+// import {AppRoutingModule} from "./app-routing.module";
+
+const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 
 @NgModule({
     imports: [
@@ -18,9 +22,12 @@ import {ControlComponent} from './control.component';
         HttpModule,
         FormsModule,
         ChartsModule,
-        SentimentComponent,
-        ControlComponent],
-    declarations: [AppComponent],
+        SocketIoModule.forRoot(config)
+    ],
+    declarations: [AppComponent,
+      SentimentComponent,
+      ControlComponent
+    ],
     providers: [TweetService],
     bootstrap: [AppComponent]
 })

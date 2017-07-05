@@ -1,11 +1,13 @@
 import {AfterViewInit, ChangeDetectorRef, Component, ViewChild} from '@angular/core';
 import {TweetService} from './tweet.service';
 import {BaseChartDirective} from 'ng2-charts';
+import {Tweet} from "./tweet";
 
 
 @Component({
   selector: 'data-pane',
   templateUrl: './sentiment.component.html',
+  styleUrls: ['./sentiment.component.css'],
   styles: [`
     .chart {
       display: block;
@@ -16,7 +18,9 @@ export class SentimentComponent implements AfterViewInit {
   @ViewChild(BaseChartDirective)
   public chart: BaseChartDirective;
 
-  data: string;
+  data: any;
+  showTweet = false;
+  selectedTweet: string;
   showSpinner = false;
   rerender = true;
   hashtag: string;
@@ -53,7 +57,7 @@ export class SentimentComponent implements AfterViewInit {
           display: true,
           labelString: 'Date'
         }
-      }, ],
+      },],
       yAxes: [{
         ticks: {
           beginAtZero: true
@@ -74,31 +78,43 @@ export class SentimentComponent implements AfterViewInit {
 
 
   ngAfterViewInit() {
-    this.data = this.tweetService.getLastKnownData();
+    this.selectedTweet = this.tweetService.getLastKnownSelectedTweet();
 
     /* Subscribe to selection emitter */
-    this.tweetService.hashtag$.subscribe(data => {
-      this.data = data;
+    this.tweetService.selectedTweet$.subscribe(tweet => {
+      this.selectedTweet = tweet;
+      this.showTweet = true;
     });
 
-    this.computeResponse(this.data);
+    this.tweetService.showTweetOverview$.subscribe(msg => {
+      this.showTweet = false;
+      this.computeGraphData(this.data);
+    });
+
+    this.tweetService.data$.subscribe(data => {
+      this.data = data;
+      // this.computeGraphData(this.data);
+    });
+
+    // this.computeGraphData(this.data);
   }
 
-  private computeResponse(response: any) {
+  private computeGraphData(response: any) {
     if (response === undefined) {
       return;
     }
-    // this.overallSentiment = response['overall'];
-    //
-    // this.datasets = [];
-    // this.labels = [];
-    // this.datasets = response['intervals']['dataset'];
-    // let labels = [];
-    // for (let label of response['intervals']['labels']) {
-    //   let date = new Date(label);
-    //   labels.push(date);
-    // }
-    // this.labels = labels;
+    console.log(JSON.stringify(response, null, 2));
+    this.overallSentiment = response['overall_sentiment'];
+
+    this.datasets = [];
+    this.labels = [];
+    this.datasets = response['graph_data']['dataset'];
+    let labels = [];
+    for (let label of response['graph_data']['labels']) {
+      let date = new Date(label);
+      labels.push(date);
+    }
+    this.labels = labels;
 
 
     this.doRerender();

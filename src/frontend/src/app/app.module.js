@@ -15,6 +15,9 @@ var forms_1 = require("@angular/forms");
 var ng2_charts_1 = require("ng2-charts");
 var sentiment_component_1 = require("./sentiment.component");
 var control_component_1 = require("./control.component");
+var ng_socket_io_1 = require("ng-socket-io");
+// import {AppRoutingModule} from "./app-routing.module";
+var config = { url: 'http://localhost:5000', options: {} };
 var AppModule = (function () {
     function AppModule() {
     }
@@ -28,10 +31,12 @@ AppModule = __decorate([
             http_1.HttpModule,
             forms_1.FormsModule,
             ng2_charts_1.ChartsModule,
+            ng_socket_io_1.SocketIoModule.forRoot(config)
+        ],
+        declarations: [app_component_1.AppComponent,
             sentiment_component_1.SentimentComponent,
             control_component_1.ControlComponent
         ],
-        declarations: [app_component_1.AppComponent],
         providers: [tweet_service_1.TweetService],
         bootstrap: [app_component_1.AppComponent]
     })

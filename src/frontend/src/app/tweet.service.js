@@ -13,19 +13,21 @@ var http_1 = require("@angular/http");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/toPromise");
 var Subject_1 = require("rxjs/Subject");
-var ng2_socket_io_1 = require("ng2-socket-io");
+var ng_socket_io_1 = require("ng-socket-io");
 var TweetService = (function () {
-    //
-    //
     function TweetService(socket, http) {
         this.socket = socket;
         this.http = http;
         // Observable string sources
         this.hashtagSource = new Subject_1.Subject();
         this.dataSource = new Subject_1.Subject();
+        this.selectedTweetSource = new Subject_1.Subject();
+        this.showTweetOverviewSource = new Subject_1.Subject();
         // Observable string streams
         this.hashtag$ = this.hashtagSource.asObservable();
         this.data$ = this.dataSource.asObservable();
+        this.selectedTweet$ = this.selectedTweetSource.asObservable();
+        this.showTweetOverview$ = this.showTweetOverviewSource.asObservable();
     }
     // Service message commands
     TweetService.prototype.announceNewHashtag = function (newHashtag) {
@@ -36,42 +38,36 @@ var TweetService = (function () {
         this.lastKnownData = newData;
         this.dataSource.next(newData);
     };
+    TweetService.prototype.announceSelectedTweet = function (tweet) {
+        this.lastKnownSelectedTweet = tweet;
+        this.selectedTweetSource.next(tweet);
+    };
+    TweetService.prototype.announceShowTweetOverview = function (msg) {
+        this.showTweetOverviewSource.next(msg);
+    };
     TweetService.prototype.sendDataRequest = function (msg) {
+        console.log('emit data_request...');
         this.socket.emit('data_request', msg);
     };
     TweetService.prototype.getDataResponse = function () {
         return this.socket
-            .fromEvent('data_response')
-            .map(function (data) { return data.json().msg; });
+            .fromEvent('data_response');
+        // .map(data => data.data);
     };
-    // saveTermsState(termsState: any) {
-    //     this.termsState = termsState;
-    // }
-    //
-    // getTermsState() {
-    //     return this.termsState;
-    // }
-    //
-    // saveTopicsState(topicsState: any) {
-    //     this.topicsState = topicsState;
-    // }
-    //
-    // getTopicsState() {
-    //     return this.topicsState;
-    // }
-    //
-    //
     TweetService.prototype.getLastKnownHashtag = function () {
         return this.lastKnownHashtag;
     };
     TweetService.prototype.getLastKnownData = function () {
         return this.lastKnownData;
     };
+    TweetService.prototype.getLastKnownSelectedTweet = function () {
+        return this.lastKnownSelectedTweet;
+    };
     return TweetService;
 }());
 TweetService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [ng2_socket_io_1.Socket, http_1.Http])
+    __metadata("design:paramtypes", [ng_socket_io_1.Socket, http_1.Http])
 ], TweetService);
 exports.TweetService = TweetService;
 //# sourceMappingURL=tweet.service.js.map

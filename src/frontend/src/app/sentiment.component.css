@@ -1,0 +1,13 @@
+div.table {
+  display: table;
+  width: calc(100% - 10px);
+  /*border: 1px solid blue;*/
+  padding: 5px;
+}
+
+div.spalte {
+  display: table-cell;
+  /*border: thin solid red;*/
+  width: 200px;
+  padding: 5px;
+}

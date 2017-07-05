@@ -15,6 +15,7 @@ var SentimentComponent = (function () {
     function SentimentComponent(tweetService, cdRef) {
         this.tweetService = tweetService;
         this.cdRef = cdRef;
+        this.showTweet = false;
         this.showSpinner = false;
         this.rerender = true;
         this.datasets = [];
@@ -60,44 +61,54 @@ var SentimentComponent = (function () {
     };
     SentimentComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
-        this.data = this.tweetService.getLastKnownData();
+        this.selectedTweet = this.tweetService.getLastKnownSelectedTweet();
         /* Subscribe to selection emitter */
-        this.tweetService.hashtag$.subscribe(function (data) {
-            _this.data = data;
+        this.tweetService.selectedTweet$.subscribe(function (tweet) {
+            _this.selectedTweet = tweet;
+            _this.showTweet = true;
         });
-        this.computeResponse(this.data);
+        this.tweetService.showTweetOverview$.subscribe(function (msg) {
+            _this.showTweet = false;
+            _this.computeGraphData(_this.data);
+        });
+        this.tweetService.data$.subscribe(function (data) {
+            _this.data = data;
+            // this.computeGraphData(this.data);
+        });
+        // this.computeGraphData(this.data);
     };
-    SentimentComponent.prototype.computeResponse = function (response) {
+    SentimentComponent.prototype.computeGraphData = function (response) {
         if (response === undefined) {
             return;
         }
-        // this.overallSentiment = response['overall'];
-        //
-        // this.datasets = [];
-        // this.labels = [];
-        // this.datasets = response['intervals']['dataset'];
-        // let labels = [];
-        // for (let label of response['intervals']['labels']) {
-        //   let date = new Date(label);
-        //   labels.push(date);
-        // }
-        // this.labels = labels;
+        console.log(JSON.stringify(response, null, 2));
+        this.overallSentiment = response['overall_sentiment'];
+        this.datasets = [];
+        this.labels = [];
+        this.datasets = response['graph_data']['dataset'];
+        var labels = [];
+        for (var _i = 0, _a = response['graph_data']['labels']; _i < _a.length; _i++) {
+            var label = _a[_i];
+            var date = new Date(label);
+            labels.push(date);
+        }
+        this.labels = labels;
         this.doRerender();
     };
     return SentimentComponent;
 }());
 __decorate([
     core_1.ViewChild(ng2_charts_1.BaseChartDirective),
-    __metadata("design:type", typeof (_a = typeof ng2_charts_1.BaseChartDirective !== "undefined" && ng2_charts_1.BaseChartDirective) === "function" && _a || Object)
+    __metadata("design:type", ng2_charts_1.BaseChartDirective)
 ], SentimentComponent.prototype, "chart", void 0);
 SentimentComponent = __decorate([
     core_1.Component({
         selector: 'data-pane',
         templateUrl: './sentiment.component.html',
+        styleUrls: ['./sentiment.component.css'],
         styles: ["\n    .chart {\n      display: block;\n    }\n  "]
     }),
     __metadata("design:paramtypes", [tweet_service_1.TweetService, core_1.ChangeDetectorRef])
 ], SentimentComponent);
 exports.SentimentComponent = SentimentComponent;
-var _a;
 //# sourceMappingURL=sentiment.component.js.map

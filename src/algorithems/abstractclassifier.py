@@ -3,7 +3,7 @@ import pickle
 import os
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
-from src.preprocessing.preprocessing import Tokenizer
+from preprocessing.preprocessing import Tokenizer
 import io
 
 class AbstractClassifier:

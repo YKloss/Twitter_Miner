@@ -8,7 +8,7 @@ from nltk.stem.snowball import SnowballStemmer
 from nltk.tokenize import TweetTokenizer
 import logging
 
-from contractions import CONTRACTION_MAP
+from preprocessing.contractions import CONTRACTION_MAP
 
 logger = logging.getLogger(__name__)
 

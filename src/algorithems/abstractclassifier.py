@@ -46,7 +46,7 @@ class AbstractClassifier:
     def predict_all(self, texts):
         if not self.classificator:
             raise Exception("Model not trained!")
-        result = self.classificator.predict(texts)
+        result = self.classificator.predict(texts).astype(np.int).tolist()
         return result
 
     def save(self):

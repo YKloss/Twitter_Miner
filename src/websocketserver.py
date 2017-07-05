@@ -22,7 +22,7 @@ def setup(app):
         # app.logger.error(e.message)
         pass
     app.config['model'] = model
-setup(app)
+#setup(app)
 
 
 @socketio.on('data_request')
@@ -46,38 +46,6 @@ def test_message(message):
     emit('data_response', json_result)
 
 
-def build_respone(tweets, model_result):
-    dataset_resp = []
-    tweets_resp = []
-    labels_resp = []
-
-    overall_sentiment = 0.0
-
-    for algorithm in model_result:
-        dataset_resp.append({"data":model_result[algorithm], "label": algorithm})
-
-
-    for i, tweet in enumerate(tweets):
-        new_tweet = {
-            "author":tweet.user.name,
-            "text": tweet.text
-        }
-        for algorithm in model_result:
-            new_tweet[algorithm] = model_result[algorithm][i]
-        tweets_resp.append(new_tweet)
-        labels_resp.append(tweet.time)
-
-
-    response_obj = {
-        "graph_data": {
-            "dataset": dataset_resp,
-            "labels": labels_resp
-        },
-        "tweets": tweets_resp,
-        "overall_sentiment": overall_sentiment
-    }
-    return response_obj
-
 @app.route('/<path:path>')
 @cross_origin()
 def catch_all(path):
@@ -93,5 +61,38 @@ def catch_all(path):
 def index():
     return send_file('./frontend/src/index.html')
 
+def build_respone(tweets, model_result):
+    dataset_resp = []
+    tweets_resp = []
+    labels_resp = []
+
+    overall_sentiment = 0.0
+
+    for algorithm in model_result:
+        dataset_resp.append({"data":model_result[algorithm], "label": algorithm})
+
+    for i, tweet in enumerate(tweets):
+        new_tweet = {
+            "author":tweet.user.name,
+            "text": tweet.text
+        }
+        for algorithm in model_result:
+            new_tweet[algorithm] = model_result[algorithm][i]
+        tweets_resp.append(new_tweet)
+        labels_resp.append(int(tweet.created_at.timestamp()))
+
+
+    response_obj = {
+        "graph_data": {
+            "dataset": dataset_resp,
+            "labels": labels_resp
+        },
+        "tweets": tweets_resp,
+        "overall_sentiment": overall_sentiment
+    }
+    return response_obj
+
 if __name__ == '__main__':
     socketio.run(app)
+
+

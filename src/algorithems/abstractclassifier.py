@@ -52,6 +52,9 @@ class AbstractClassifier:
     def save(self):
         self.logger.debug("Saving model...")
         my_path = os.path.abspath(os.path.dirname(__file__))
+        if not os.path.exists(os.path.join(my_path, "trained_models")):
+            self.logger.debug(os.path.join(my_path, "trained_models")+" does not exists, creating it...")
+            os.makedirs(os.path.join(my_path, "trained_models"))
         my_path = os.path.join(my_path, "trained_models", self.get_name()+".p")
         if self.classificator:
             pickle.dump(self.classificator, open(my_path, "wb"))

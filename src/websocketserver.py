@@ -4,6 +4,18 @@ from flask import Flask
 from algorithems.classifier import CombinedClassifier
 from twitterconnector import TwitterConnector
 
+def test():
+    model = CombinedClassifier()
+    model.load()
+    twitterconnector = TwitterConnector()
+    tweets = twitterconnector.get_tweets("brexit", 10)
+
+    model_result = model.predict_all([t.text for t in tweets])
+    json_result = build_respone(tweets, model_result)
+    print(json_result)
+test()
+exit()
+
 app = Flask(__name__)
 socketio = SocketIO(app, async_mode='gevent', debug=True, host="0.0.0.0", port=5000, engineio_logger=True, logger=True)
 
@@ -16,7 +28,7 @@ def setup(app):
     except Exception as e:
         app.logger.error(e.message)
     app.config['model'] = model
-setup(app)
+#setup(app)
 
 
 @socketio.on('data_request')
@@ -70,6 +82,7 @@ def build_respone(tweets, model_result):
     return response_obj
 
 
-
 if __name__ == '__main__':
     socketio.run(app)
+
+

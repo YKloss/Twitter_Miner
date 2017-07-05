@@ -13,16 +13,34 @@ var tweet_service_1 = require("./tweet.service");
 var ControlComponent = (function () {
     function ControlComponent(tweetService) {
         this.tweetService = tweetService;
-        this.showSpinner = false;
-        this.data = '';
+        this.hashtagSelected = false;
     }
     ControlComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.data = this.tweetService.getLastKnownData();
+        // this.tweets = this.tweetService.getLastKnownData().tweets;
+        var data = this.tweetService.getLastKnownData();
+        this.hashtag = this.tweetService.getLastKnownHashtag();
+        if (data !== undefined) {
+            this.tweets = data.tweets;
+        }
         /* Subscribe to selection emitter */
-        this.tweetService.data$.subscribe(function (data) {
-            _this.data = data;
+        this.tweetService.data$.subscribe(function (msg) {
+            _this.tweets = msg.tweets;
         });
+        this.tweetService.hashtag$.subscribe(function (hashtag) {
+            _this.hashtag = hashtag;
+        });
+    };
+    ControlComponent.prototype.onSelectTweet = function (tweet) {
+        this.hashtagSelected = false;
+        this.selectedTweet = tweet;
+        console.log('tweet selected: ' + tweet.author);
+        this.tweetService.announceSelectedTweet(tweet);
+    };
+    ControlComponent.prototype.onSelectAllTweets = function () {
+        this.hashtagSelected = true;
+        this.selectedTweet = null;
+        this.tweetService.announceShowTweetOverview(1);
     };
     return ControlComponent;
 }());
@@ -30,6 +48,7 @@ ControlComponent = __decorate([
     core_1.Component({
         selector: 'control-pane',
         templateUrl: './control.component.html',
+        styleUrls: ['./control.component.css']
     }),
     __metadata("design:paramtypes", [tweet_service_1.TweetService])
 ], ControlComponent);

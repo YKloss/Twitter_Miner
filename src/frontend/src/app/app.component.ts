@@ -1,5 +1,4 @@
 import { Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 import {TweetService} from './tweet.service';
 
 @Component({
@@ -12,14 +11,17 @@ export class AppComponent implements OnInit {
     hashtag: string;
     showSpinner = false;
 
-    constructor(router: Router, private tweetService: TweetService) {
+    constructor(private tweetService: TweetService) {
     }
 
     ngOnInit() {
       this.tweetService
         .getDataResponse()
         .subscribe(msg => {
+          console.log(JSON.stringify(msg, null, 2));
           this.tweetService.announceNewData(msg);
+          this.tweetService.announceNewHashtag(this.hashtagInput);
+          this.showSpinner = false;
         });
 
       this.hashtag = this.tweetService.getLastKnownHashtag();
@@ -32,11 +34,11 @@ export class AppComponent implements OnInit {
 
     getNewTweets() {
         this.showSpinner = true;
-        let request_obj: any = {'hashtag': this.hashtagInput, 'number_of_tweets': Number(this.itemsInput)};
+        let request_obj = {'hashtag': this.hashtagInput, 'number_of_tweets': Number(this.itemsInput)};
 
         console.log('getting tweets...');
 
-        this.tweetService.sendDataRequest(<JSON>request_obj);
+        this.tweetService.sendDataRequest(JSON.stringify(request_obj));
     }
 }
 

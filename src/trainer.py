@@ -4,9 +4,9 @@ from dataloader import Dataloader
 from algorithems.classifier import CombinedClassifier
 
 
-def train():
+def train(datalimit = 0):
     #Loading Data
-    dataloader = Dataloader()
+    dataloader = Dataloader(datalimit)
     train_texts, train_classes, test_texts, test_classes = dataloader.load_all_datasets()
     #train_texts, train_classes, test_texts, test_classes = dataloader.load_small_fake_data()
 

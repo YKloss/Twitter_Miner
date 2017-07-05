@@ -25,7 +25,13 @@
 
       // other libraries
       'rxjs':                      'npm:rxjs',
-      'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
+      'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
+      'ng2-charts': 'npm:ng2-charts/bundles/ng2-charts.umd.min.js',
+      // 'ng2-socket-io': 'npm:ng2-socket-io/socket-io.module.js',
+      // "socket.io-client": "node_modules/socket.io-client/dist/socket.io.js"
+      // "ng-socket-io": "node_modules/socket.io-client/dist/socket.io.js"
+      'ng-socket-io': 'npm:ng-socket-io',
+      'socket.io-client': 'npm:socket.io-client/dist/socket.io.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -39,7 +45,12 @@
       },
       rxjs: {
         defaultExtension: 'js'
+      },
+      'ng-socket-io': {
+        defaultExtension: 'js',
+        main: 'index.js'
       }
+
     }
   });
 })(this);

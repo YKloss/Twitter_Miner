@@ -43,34 +43,15 @@
 
 <div id="main">
 
-  <!-- control-pane: Left-side of the screen -->
-  <control-pane></control-pane>
+  <!-- Control-pane: Left-side of the Dashboard -->
+  <div id="control-pane" class="white-round" style="position: relative">
+    <control-pane></control-pane>
+  </div>
 
-  <!-- data-pane: Right-side of the screen-->
-  <data-pane></data-pane>
-
-
-  <!--<div id="control-pane" class="white-round" style="position: relative">-->
-    <!--<li *ngIf="showSpinner" style="height: 80%; width: 100%; display: flex; align-items: center; justify-content: center;">-->
-      <!--<i class="fa fa-spinner fa-spin" style="font-size:100px"></i>-->
-    <!--</li>-->
-  <!--</div>-->
-
-  <!--&lt;!&ndash; action-pane: Right-side of the Dashboard &ndash;&gt;-->
-  <!--<div id="action-pane" class="white-round">-->
-    <!--<li *ngIf="showSpinner" style="height: 80%; width: 100%; display: flex; align-items: center; justify-content: center;">-->
-      <!--<i class="fa fa-spinner fa-spin" style="font-size:100px"></i>-->
-    <!--</li>-->
-    <!--<canvas baseChart *ngIf="rerender && datasets.length > 0"-->
-            <!--class="chart"-->
-            <!--[datasets]="datasets"-->
-            <!--[labels]="labels"-->
-            <!--[options]="options"-->
-            <!--[chartType]="'line'">-->
-    <!--</canvas>-->
-    <!--<p *ngIf="overallSentiment != ''">Overall Sentiment: {{overallSentiment}}</p>-->
-
-  <!--</div>-->
+  <!-- Action-pane: Right-side of the Dashboard -->
+  <div id="action-pane" class="white-round">
+    <data-pane style="width: 75%; height: 100%;"></data-pane>
+  </div>
 
 
 </div>

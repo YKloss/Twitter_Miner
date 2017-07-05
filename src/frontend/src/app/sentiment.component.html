@@ -1,16 +1,40 @@
-<div id="action-pane" class="white-round">
-  <!--<li *ngIf="showSpinner"-->
-      <!--style="height: 80%; width: 100%; display: flex; align-items: center; justify-content: center;">-->
-    <!--<i class="fa fa-spinner fa-spin" style="font-size:100px"></i>-->
-  <!--</li>-->
-  <!--<canvas baseChart *ngIf="rerender && datasets.length > 0"-->
-          <!--class="chart"-->
-          <!--[datasets]="datasets"-->
-          <!--[labels]="labels"-->
-          <!--[options]="options"-->
-          <!--[chartType]="'line'">-->
-  <!--</canvas>-->
-  <!--<p *ngIf="overallSentiment != ''">Overall Sentiment: {{overallSentiment}}</p>-->
+<!--<li *ngIf="showSpinner"-->
+<!--style="height: 80%; width: 100%; display: flex; align-items: center; justify-content: center;">-->
+<!--<i class="fa fa-spinner fa-spin" style="font-size:100px"></i>-->
+<!--</li>-->
+<canvas baseChart *ngIf="rerender && datasets.length > 0 && !showTweet"
+        class="chart"
+        [datasets]="datasets"
+        [labels]="labels"
+        [options]="options"
+        [chartType]="'line'">
+</canvas>
+<h4 *ngIf="overallSentiment != '' && !showTweet">Overall Sentiment: {{overallSentiment}}</h4>
+
+<div *ngIf="showTweet">
+  <h1>{{selectedTweet.author}}</h1>
+  <!--<div style="display: inline-block; width: 49%;">{{selectedTweet.text}}</div>-->
+  <!--<div style="display: inline-block; width: 50%;">-->
+  <!--<p>Bayes: {{selectedTweet.bayes}}</p>-->
+  <!--<p>SVM: {{selectedTweet.svm}}</p>-->
+  <!--<p>Tree: {{selectedTweet.tree}}</p>-->
+
+  <!--</div>-->
+
+
+  <div class="table">
+    <div class="spalte">{{selectedTweet.text}}</div>
+    <div class="spalte" style="width: 20px"><h4>Bayes:</h4>
+      <br><h4>SVM:</h4>
+      <br><h4>Tree:</h4>
+    </div>
+    <div class="spalte" style="width: 10px">
+      <h4>{{selectedTweet.bayes}}</h4>
+      <br><h4>{{selectedTweet.svm}}</h4>
+      <br><h4>{{selectedTweet.tree}}</h4>
+    </div>
+  </div>
+
 
 </div>
 

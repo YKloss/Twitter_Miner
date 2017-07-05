@@ -1,14 +1,17 @@
-<div id="control-pane" class="white-round" style="position: relative">
-  <li *ngIf="showSpinner">
-    <i class="fa fa-spinner fa-spin" style="font-size:100px"></i>
+<ul class="heroes">
+  <li *ngIf="hashtag != undefined" (click)="onSelectAllTweets()" [class.selected]="hashtagSelected">
+    <div class="badge" style="background-color: #FFD300">{{hashtag}}</div>
+    <div style="width: 50%; overflow: hidden; text-overflow: ellipsis; float: right; padding-left: 0.4em;">
+      Show overall
+    </div>
   </li>
+  <li *ngFor="let tweet of tweets" (click)="onSelectTweet(tweet)"
+      [class.selected]="tweet === selectedTweet">
+    <div class="badge">{{tweet.author}}</div>
+    <div style="width: 50%; overflow: hidden; text-overflow: ellipsis; float: right; padding-left: 0.4em;">
+      {{tweet.text}}
+    </div>
+  </li>
+</ul>
 
-  <ul class="heroes">
-    <li *ngFor="let hero of heroes" (click)="onSelect(hero)"
-        [class.selected]="hero === selectedHero">
-      <span class="badge">{{hero.id}}</span>
-      <span>{{hero.name}}</span>
-    </li>
-  </ul>
 
-</div>

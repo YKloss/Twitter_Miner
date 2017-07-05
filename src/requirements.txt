@@ -1,10 +1,12 @@
-#pip install -r requirements.txt
-scikit-learn=0.18.1
-flask=0.12.2
+#pip3 install -r requirements.txt
+scikit-learn==0.18.1
+flask==0.12.2
 flask-socketio
-gevent=1.2.1
-tweepy=3.5.0
-bs4=0.0.1
+gevent==1.2.1
+tweepy==3.5.0
+bs4==0.0.1
 flask_cors
 nltk
 tqdm
+numpy
+scipy

@@ -5,6 +5,7 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from preprocessing.preprocessing import Tokenizer
 import io
+from sklearn import metrics
 
 class AbstractClassifier:
 
@@ -32,6 +33,8 @@ class AbstractClassifier:
         predicted = self.classificator.predict(texts)
         accuracy = np.mean(predicted == classes)
         self.logger.info("Accuracy: %f" % accuracy)
+        self.logger.info(metrics.confusion_matrix(classes, predicted))
+        self.logger.info(metrics.classification_report(predicted, classes))
         return accuracy
 
     def predict(self, text):

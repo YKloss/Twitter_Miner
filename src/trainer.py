@@ -13,12 +13,14 @@ def train(datalimit = 0):
     model = CombinedClassifier()
     model.train_and_save(train_texts, train_classes)
     model.eval(test_texts, test_classes)
+    
+    model.tune_parameters(train_texts, train_classes)
 
 
 
 def main():
     logging.basicConfig(format='%(asctime)s:%(name)s:%(levelname)s:%(message)s', level=logging.DEBUG)
-    train()
+    train(1000)
 
 
 if __name__ == '__main__':

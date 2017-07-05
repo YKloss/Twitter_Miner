@@ -25,6 +25,10 @@ class AbstractClassifier:
     def train(self, texts, classes):
         # implement it in the derived class
         pass
+    
+    def tune_parameters(self):
+        # implement it in the derived class
+        pass
 
     def eval(self, texts, classes):
         self.logger.debug("Start evaluating...")

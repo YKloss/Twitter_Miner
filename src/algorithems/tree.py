@@ -20,6 +20,11 @@ class DecisionTree(AbstractClassifier):
                           ])
         self.classificator = model.fit(texts, classes)
         logger.debug("Finished training.")
+        
+    def tune_parameters(self, texts, classes):
+        self.logger.debug("Start parameter tuning...")
+        self.logger.info("tune_parameters() not implemented")
+        self.logger.debug("Finished parameter tuning...")
 
     def get_name(self):
         return "tree"

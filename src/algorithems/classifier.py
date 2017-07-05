@@ -13,6 +13,10 @@ class CombinedClassifier:
     def train(self, texts, classes):
         for model in self.models:
             model.train(texts, classes)
+            
+    def tune_parameters(self, texts, classes):
+        for model in self.models:
+            model.tune_parameters(texts, classes)
 
     def eval(self, texts, classes):
         for model in self.models:

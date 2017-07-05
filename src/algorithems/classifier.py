@@ -1,6 +1,6 @@
-from src.algorithems.bayes import NaiveBayes
-from src.algorithems.svm import SupportVectorMachine
-from src.algorithems.tree import DecisionTree
+from algorithems.bayes import NaiveBayes
+from algorithems.svm import SupportVectorMachine
+from algorithems.tree import DecisionTree
 import logging
 
 logger = logging.getLogger(__name__)

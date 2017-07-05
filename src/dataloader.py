@@ -6,7 +6,7 @@ import random
 import io
 import codecs
 from preprocessing.preprocessing import TextPreprocessing
-import copy_reg, types
+import copyreg, types
 
 logger = logging.getLogger(__name__)
 
@@ -16,13 +16,14 @@ def _pickle_method(m):
         return getattr, (m.im_class, m.im_func.func_name)
     else:
         return getattr, (m.im_self, m.im_func.func_name)
-copy_reg.pickle(types.MethodType, _pickle_method)
+copyreg.pickle(types.MethodType, _pickle_method)
 
 
 class Dataloader():
 
-    def __init__(self):
+    def __init__(self, datalimit):
         self.home_path = os.path.abspath(os.path.dirname(__file__))
+        self.datalimit = datalimit
 
 
     def _load_michigan_and_sanders_dataset(self):
@@ -36,7 +37,7 @@ class Dataloader():
         path = os.path.join(self.home_path, "datasets/michigan_and_sanders.csv")
         if not os.path.isfile(path):
             logger.error("File datasets/michigan_and_sanders.csv not found! Did you may forget to unpack the .zip file?")
-        with open(path) as f:
+        with open(path, encoding='latin-1') as f:
             csvreader = csv.reader(f)
             next(csvreader)  # skip header
             data = [(line[3], line[1]) for line in csvreader]
@@ -54,7 +55,7 @@ class Dataloader():
         path = os.path.join(self.home_path, "datasets/sentiment140.csv")
         if not os.path.isfile(path):
             logger.error("File datasets/sentiment140.csv not found! Did you may forget to unpack the .zip file?")
-        with open(path) as f:
+        with open(path, encoding='latin-1') as f:
             csvreader = csv.reader(f)
             data = []
             for line in csvreader:
@@ -86,8 +87,9 @@ class Dataloader():
         preprocessor = TextPreprocessing()
         logger.debug("Start preprocessing...")
         #data = pool.map(preprocessor.preprocess_text, data_1[:1000])
-        all_data = data_1[:1000]
-        #all_data = data_1+data_2
+        all_data = data_1+data_2
+        if self.datalimit != 0:
+            all_data = all_data[:self.datalimit]
         data_iter = pool.imap_unordered(preprocessor.preprocess_text, all_data, chunksize=100)
         data = []
         for items in tqdm.tqdm(data_iter, total=len(all_data)):

@@ -4,6 +4,7 @@ from flask import Flask, send_file
 from algorithems.classifier import CombinedClassifier
 from twitterconnector import TwitterConnector
 import json
+import numpy as np
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
@@ -68,9 +69,10 @@ def build_respone(tweets, model_result, number_of_datapoints):
     tweets_resp = []
     labels_resp = []
 
-    overall_sentiment = 0.0
+    overall_sentiment = {}
 
     for algorithm in model_result:
+        overall_sentiment[algorithm] = np.average(np.array(model_result[algorithm]))
         dataset_resp.append({"data":moving_average(model_result[algorithm],number_of_datapoints), "label": algorithm})
 
     for i, tweet in enumerate(tweets):

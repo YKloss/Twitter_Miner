@@ -20,7 +20,9 @@ var SentimentComponent = (function () {
         this.rerender = true;
         this.datasets = [];
         this.labels = [];
-        this.overallSentiment = '';
+        this.overallSentimentBayes = '';
+        this.overallSentimentSvm = '';
+        this.overallSentimentTree = '';
         this.options = {
             scales: {
                 xAxes: [{
@@ -82,7 +84,9 @@ var SentimentComponent = (function () {
             return;
         }
         console.log(JSON.stringify(response, null, 2));
-        this.overallSentiment = response['overall_sentiment'];
+        this.overallSentimentBayes = response['overall_sentiment']['bayes'];
+        this.overallSentimentSvm = response['overall_sentiment']['svm'];
+        this.overallSentimentTree = response['overall_sentiment']['tree'];
         this.datasets = [];
         this.labels = [];
         this.datasets = response['graph_data']['dataset'];

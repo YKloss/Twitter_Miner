@@ -26,7 +26,7 @@ def setup(app):
         pass
     app.config['model'] = model
     app.config['preprocessor'] = preprocessor
-#setup(app)
+setup(app)
 
 
 @socketio.on('data_request')

@@ -8,7 +8,7 @@
   <li *ngFor="let tweet of tweets" (click)="onSelectTweet(tweet)"
       [class.selected]="tweet === selectedTweet">
     <div class="badge">{{tweet.author}}</div>
-    <div style="width: 50%; overflow: hidden; text-overflow: ellipsis; float: right; padding-left: 0.4em;">
+    <div style="white-space: nowrap; width: 50%; overflow: hidden; text-overflow: ellipsis; float: right; padding-left: 0.4em;">
       {{tweet.text}}
     </div>
   </li>

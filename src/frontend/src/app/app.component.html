@@ -2,7 +2,7 @@
 <header>
     <div class="white-round logo" style="margin-bottom: 0px; margin-top: 5px; float: left; height: 50px; text-align: center; display: table;
     vertical-align: middle">
-        <p style="display: table-cell; vertical-align: middle;">Hashtag#Analysis</p>
+        <p style="display: table-cell; vertical-align: middle;">Twitter Miner</p>
     </div>
 </header>
 
@@ -30,7 +30,7 @@
         </li>
 
         <li *ngIf="hashtag != undefined">
-            <a style="float: right; pointer-events: none; cursor: default; padding-top: 8px;"><i>Current Tweets from: #{{hashtag}}</i></a>
+            <a style="float: right; pointer-events: none; cursor: default; padding-top: 8px;"><i>Current Tweets from: {{hashtag}}</i></a>
         </li>
         <li *ngIf="hashtag == undefined">
             <a style="color: red; float: right; pointer-events: none; cursor: default; padding-top: 8px;"><i>Current Tweets from: -</i></a>

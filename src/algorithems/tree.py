@@ -16,7 +16,7 @@ class DecisionTree(AbstractClassifier):
     def train(self, texts, classes):
         logger.debug("Start training...")
         model = Pipeline([('vect', self.vectorizer),
-                          ('clf', tree.DecisionTreeClassifier()),
+                          ('clf', tree.DecisionTreeClassifier(max_depth=15, max_leaf_nodes=500)),
                           ])
         self.classificator = model.fit(texts, classes)
         logger.debug("Finished training.")

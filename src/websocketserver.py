@@ -22,7 +22,7 @@ def setup(app):
         # app.logger.error(e.message)
         pass
     app.config['model'] = model
-#setup(app)
+setup(app)
 
 
 @socketio.on('data_request')

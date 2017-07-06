@@ -55,7 +55,8 @@ class CombinedClassifier:
                 model.train(texts, classes)
                 model.save()
             except Exception as e:
-                logger.error(e.message)
+                raise e
+                #logger.error(e.message)
 
     def load(self):
         for model in self.models:

@@ -84,6 +84,9 @@ hr {
 #header-nav ul:last-child li:first-child {
   border-left: none;
 }
+#header-nav ul:last-child li:last-child {
+  border-left: none;
+}
 
 
 #header-nav li a {

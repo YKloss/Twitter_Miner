@@ -87,7 +87,8 @@ class Dataloader():
         preprocessor = TextPreprocessing()
         logger.debug("Start preprocessing...")
         #data = pool.map(preprocessor.preprocess_text, data_1[:1000])
-        all_data = data_1+data_2
+        #all_data = data_1+data_2
+        all_data = data_1[:1000]
         if self.datalimit != 0:
             all_data = all_data[:self.datalimit]
         data_iter = pool.imap_unordered(preprocessor.preprocess_text, all_data, chunksize=100)

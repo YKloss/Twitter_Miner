@@ -7,6 +7,8 @@ from bs4 import BeautifulSoup
 from nltk.stem.snowball import SnowballStemmer
 from nltk.tokenize import TweetTokenizer
 import logging
+import multiprocessing as mp
+import tqdm
 
 from preprocessing.contractions import CONTRACTION_MAP
 
@@ -24,6 +26,15 @@ class Tokenizer:
         words = self.tokenizer.tokenize(texts)
         return words
 
+
+import copyreg, types
+
+def _pickle_method(m):
+    if m.im_self is None:
+        return getattr, (m.im_class, m.im_func.func_name)
+    else:
+        return getattr, (m.im_self, m.im_func.func_name)
+copyreg.pickle(types.MethodType, _pickle_method)
 
 class TextPreprocessing:
 
@@ -109,8 +120,7 @@ class TextPreprocessing:
         filtered_tokens = [token for token in tokens if token not in string.punctuation]
         return filtered_tokens
 
-    def preprocess_text(self, item):
-        text = item[0]
+    def preprocess_text(self, text):
         text = self.remove_html_tags(text)
         text = self.expand_contractions(text, CONTRACTION_MAP)
         tokens = self.tokenize_text(text)
@@ -118,8 +128,27 @@ class TextPreprocessing:
         tokens = self.stem_text(tokens)
         tokens = self.remove_special_characters(tokens)
         text = ' '.join(tokens)
-        return (text,item[1])
+        return text
 
+    def preprocess_tuple(self, tup):
+        return self.preprocess_text(tup[0]), tup[1]
+
+    def preprocess_tuples(self, tuples):
+        logger.debug("Start preprocessing...")
+        pool = mp.Pool(processes=4)
+        data_iter = pool.imap_unordered(self.preprocess_tuple, tuples, chunksize=100)
+        data = []
+        for items in tqdm.tqdm(data_iter, total=len(tuples)):
+            data.append(items)
+        logger.debug("Preprocessing finished.")
+        return data
+
+    def preprocess_texts(self, texts):
+        logger.debug("Start preprocessing...")
+        pool = mp.Pool(processes=4)
+        data = pool.map(self.preprocess_text, texts, chunksize=100)
+        logger.debug("Preprocessing finished.")
+        return data
 
 
 # preprocess = TextPreprocessing()

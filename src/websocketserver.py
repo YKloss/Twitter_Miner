@@ -6,6 +6,7 @@ from twitterconnector import TwitterConnector
 import json
 import numpy as np
 from flask_cors import CORS, cross_origin
+from preprocessing import TextPreprocessing
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -16,6 +17,7 @@ socketio = SocketIO(app, async_mode='gevent', debug=True, host="0.0.0.0", port=5
 
 def setup(app):
     model = CombinedClassifier()
+    preprocessor = TextPreprocessing()
     try:
         model.load()
         pass
@@ -23,6 +25,7 @@ def setup(app):
         # app.logger.error(e.message)
         pass
     app.config['model'] = model
+    app.config['preprocessor'] = preprocessor
 #setup(app)
 
 
@@ -34,11 +37,12 @@ def test_message(message):
     print("hashtag: " + str(hashtag))
     number_of_tweets = message['number_of_tweets']
     number_of_datapoints = 20
-    #TODO overall sentiment
+
     print("number_of_tweets: " + str(number_of_tweets))
     twitterconnector = TwitterConnector()
     tweets = twitterconnector.get_tweets(hashtag, number_of_tweets)
-    tweet_texts = [t.text for t in tweets]
+    preprocessor = app.config['preprocessor']
+    tweet_texts = preprocessor.preprocess_texts([t.text for t in tweets])
     model = app.config['model']
     model_result = model.predict_all(tweet_texts)
     json_result = build_respone(tweets,model_result, number_of_datapoints)

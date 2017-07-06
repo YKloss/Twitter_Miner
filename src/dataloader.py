@@ -81,38 +81,12 @@ class Dataloader():
     def load_all_datasets(self):
         data_1 = self._load_michigan_and_sanders_dataset()
         data_2 = self._load_sentiment140_dataset()
-        import multiprocessing as mp
-        import tqdm
-        pool = mp.Pool(processes=4)
         preprocessor = TextPreprocessing()
-        logger.debug("Start preprocessing...")
-        #data = pool.map(preprocessor.preprocess_text, data_1[:1000])
         all_data = data_1+data_2
         if self.datalimit != 0:
             all_data = all_data[:self.datalimit]
-        data_iter = pool.imap_unordered(preprocessor.preprocess_text, all_data, chunksize=100)
-        data = []
-        for items in tqdm.tqdm(data_iter, total=len(all_data)):
-            data.append(items)
-        logger.debug("Preprocessing finished.")
+        data = preprocessor.preprocess_tuples(all_data)
         return self._split_dataset(self._shuffle_data(data))
-
-    def _preprocess_dataset(self, data):
-        logger.debug("Start preprocessing...")
-        preprocessor = TextPreprocessing()
-        processed_data = []
-        actual = 0
-        percentage = -1
-        for tup in data:
-            processed_data.append((preprocessor.preprocess_text(tup[0]), tup[1]))
-            percentage_new = int(100.0*float(actual)/len(data))
-            if percentage_new > percentage:
-                logger.debug("preprocessing... "+str(percentage_new)+"% ("+str(actual)+"/"+str(len(data))+")")
-                percentage = percentage_new
-            actual += 1
-        logger.debug("Preprocessing finished.")
-        return data
-
 
     def load_small_fake_data(self):
         texts = ["This is super!", "This is very bad.", "Another bad text example.", "Another good text example bla blub."]

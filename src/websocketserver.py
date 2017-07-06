@@ -32,13 +32,15 @@ def test_message(message):
     hashtag = message['hashtag']
     print("hashtag: " + str(hashtag))
     number_of_tweets = message['number_of_tweets']
+    number_of_datapoints = 20
+    #TODO overall sentiment
     print("number_of_tweets: " + str(number_of_tweets))
     twitterconnector = TwitterConnector()
     tweets = twitterconnector.get_tweets(hashtag, number_of_tweets)
     tweet_texts = [t.text for t in tweets]
     model = app.config['model']
     model_result = model.predict_all(tweet_texts)
-    json_result = build_respone(tweets,model_result)
+    json_result = build_respone(tweets,model_result, number_of_datapoints)
 
 
     result_json = []
@@ -60,7 +62,8 @@ def catch_all(path):
 def index():
     return send_file('./frontend/src/index.html')
 
-def build_respone(tweets, model_result):
+
+def build_respone(tweets, model_result, number_of_datapoints):
     dataset_resp = []
     tweets_resp = []
     labels_resp = []
@@ -68,7 +71,7 @@ def build_respone(tweets, model_result):
     overall_sentiment = 0.0
 
     for algorithm in model_result:
-        dataset_resp.append({"data":model_result[algorithm], "label": algorithm})
+        dataset_resp.append({"data":moving_average(model_result[algorithm],number_of_datapoints), "label": algorithm})
 
     for i, tweet in enumerate(tweets):
         new_tweet = {
@@ -80,6 +83,7 @@ def build_respone(tweets, model_result):
         tweets_resp.append(new_tweet)
         labels_resp.append(int(tweet.created_at.timestamp()))
 
+    labels_resp = moving_average(labels_resp, number_of_datapoints)
 
     response_obj = {
         "graph_data": {
@@ -90,6 +94,30 @@ def build_respone(tweets, model_result):
         "overall_sentiment": overall_sentiment
     }
     return response_obj
+
+
+def moving_average(alist, datapoints):
+    window_size = int(float(len(alist))/datapoints)
+    if window_size >= len(alist):
+        return alist
+    new_list = []
+    entry_new = 0.0
+    real_window = 0.0
+    for i, entry in enumerate(alist):
+        entry_new += entry
+        real_window += 1.0
+        if len(alist) % datapoints != 0 and len(new_list) == datapoints-1:
+            window_size += 1
+        if int(real_window) == window_size:
+            entry_new /= real_window
+            new_list.append(entry_new)
+            entry_new = 0.0
+            real_window = 0.0
+
+    if real_window != 0:
+        entry_new /= real_window
+        new_list.append(entry_new)
+    return new_list
 
 if __name__ == '__main__':
     socketio.run(app)

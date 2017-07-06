@@ -124,12 +124,12 @@ li {
 }
 
 #main {
-  height: calc(100% - 160px);
+  height: calc(100% - 130px);
   margin-bottom: 20px;
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
-  padding-bottom: 20px;
+  /*padding-bottom: 20px;*/
 }
 
 #control-pane {

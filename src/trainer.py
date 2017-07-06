@@ -14,13 +14,13 @@ def train(datalimit = 0):
     model.train_and_save(train_texts, train_classes)
     model.eval(test_texts, test_classes)
     
-    model.tune_parameters(train_texts, train_classes)
+    # model.tune_parameters(train_texts, train_classes)
 
 
 
 def main():
     logging.basicConfig(format='%(asctime)s:%(name)s:%(levelname)s:%(message)s', level=logging.DEBUG)
-    train(1000)
+    train(0)
 
 
 if __name__ == '__main__':

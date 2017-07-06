@@ -9,7 +9,7 @@
         [options]="options"
         [chartType]="'line'">
 </canvas>
-<h4 *ngIf="overallSentiment != '' && !showTweet">Overall Sentiment: {{overallSentiment}}</h4>
+<h4 *ngIf="overallSentimentBayes != '' && !showTweet"><b>Overall:</b>&#160;&#160;&#160;&#160;Bayes: {{overallSentimentBayes}}&#160;&#160;&#160;&#160;SVM: {{overallSentimentSvm}}&#160;&#160;&#160;&#160;Tree: {{overallSentimentTree}}</h4>
 
 <div *ngIf="showTweet">
   <h1>{{selectedTweet.author}}</h1>

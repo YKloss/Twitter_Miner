@@ -31,7 +31,9 @@ export class SentimentComponent implements AfterViewInit {
 
   datasets: any = [];
   labels: any = [];
-  overallSentiment: string = '';
+  overallSentimentBayes: string = '';
+  overallSentimentSvm: string = '';
+  overallSentimentTree: string = '';
 
   options = {
     scales: {
@@ -104,7 +106,9 @@ export class SentimentComponent implements AfterViewInit {
       return;
     }
     console.log(JSON.stringify(response, null, 2));
-    this.overallSentiment = response['overall_sentiment'];
+    this.overallSentimentBayes = response['overall_sentiment']['bayes'];
+    this.overallSentimentSvm = response['overall_sentiment']['svm'];
+    this.overallSentimentTree = response['overall_sentiment']['tree'];
 
     this.datasets = [];
     this.labels = [];

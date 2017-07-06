@@ -30,7 +30,7 @@
         </li>
 
         <li *ngIf="hashtag != undefined">
-            <a style="float: right; pointer-events: none; cursor: default; padding-top: 8px;"><i>Current Tweets from: #{{hashtag}}</i></a>
+            <a style="float: right; pointer-events: none; cursor: default; padding-top: 8px;"><i>Current Tweets from: {{hashtag}}</i></a>
         </li>
         <li *ngIf="hashtag == undefined">
             <a style="color: red; float: right; pointer-events: none; cursor: default; padding-top: 8px;"><i>Current Tweets from: -</i></a>

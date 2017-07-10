@@ -96,6 +96,7 @@ export class SentimentComponent implements AfterViewInit {
     this.tweetService.data$.subscribe(data => {
       if (data['id'] === this.tweetService.getCurrentId()) {
         this.data = data;
+        this.doRerender();
       }
       // this.computeGraphData(this.data);
     });

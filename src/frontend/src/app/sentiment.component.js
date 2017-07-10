@@ -76,6 +76,7 @@ var SentimentComponent = (function () {
         this.tweetService.data$.subscribe(function (data) {
             if (data['id'] === _this.tweetService.getCurrentId()) {
                 _this.data = data;
+                _this.doRerender();
             }
             // this.computeGraphData(this.data);
         });

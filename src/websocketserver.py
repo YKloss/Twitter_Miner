@@ -92,6 +92,8 @@ def build_respone(tweets, model_result, number_of_datapoints, request_id):
 
     labels_resp = moving_average(labels_resp, number_of_datapoints)
 
+    labels_resp = [l*1000 for l in labels_resp]
+
     response_obj = {
         "id": request_id,
         "graph_data": {

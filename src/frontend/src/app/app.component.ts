@@ -34,7 +34,9 @@ export class AppComponent implements OnInit {
 
     getNewTweets() {
         this.showSpinner = true;
-        let request_obj = {'hashtag': this.hashtagInput, 'number_of_tweets': Number(this.itemsInput)};
+        let id = this.tweetService.getCurrentId() + 1;
+        this.tweetService.setCurrentId(id);
+        let request_obj = {'id': id, 'hashtag': this.hashtagInput, 'number_of_tweets': Number(this.itemsInput)};
 
         console.log('getting tweets...');
 

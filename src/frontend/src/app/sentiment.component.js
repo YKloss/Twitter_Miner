@@ -74,7 +74,9 @@ var SentimentComponent = (function () {
             _this.computeGraphData(_this.data);
         });
         this.tweetService.data$.subscribe(function (data) {
-            _this.data = data;
+            if (data['id'] === _this.tweetService.getCurrentId()) {
+                _this.data = data;
+            }
             // this.computeGraphData(this.data);
         });
         // this.computeGraphData(this.data);

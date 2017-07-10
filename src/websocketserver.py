@@ -34,6 +34,7 @@ def test_message(message):
     print('received message: ' + str(message))
     message = json.loads(message)
     hashtag = message['hashtag']
+    request_id = message['id']
     print("hashtag: " + str(hashtag))
     number_of_tweets = message['number_of_tweets']
     number_of_datapoints = 20
@@ -45,7 +46,7 @@ def test_message(message):
     tweet_texts = preprocessor.preprocess_texts([t.text for t in tweets])
     model = app.config['model']
     model_result = model.predict_all(tweet_texts)
-    json_result = build_respone(tweets,model_result, number_of_datapoints)
+    json_result = build_respone(tweets,model_result, number_of_datapoints, request_id)
 
 
     result_json = []
@@ -68,7 +69,7 @@ def index():
     return send_file('./frontend/src/index.html')
 
 
-def build_respone(tweets, model_result, number_of_datapoints):
+def build_respone(tweets, model_result, number_of_datapoints, request_id):
     dataset_resp = []
     tweets_resp = []
     labels_resp = []
@@ -92,6 +93,7 @@ def build_respone(tweets, model_result, number_of_datapoints):
     labels_resp = moving_average(labels_resp, number_of_datapoints)
 
     response_obj = {
+        "id": request_id,
         "graph_data": {
             "dataset": dataset_resp,
             "labels": labels_resp

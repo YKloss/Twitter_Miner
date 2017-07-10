@@ -33,7 +33,9 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.getNewTweets = function () {
         this.showSpinner = true;
-        var request_obj = { 'hashtag': this.hashtagInput, 'number_of_tweets': Number(this.itemsInput) };
+        var id = this.tweetService.getCurrentId() + 1;
+        this.tweetService.setCurrentId(id);
+        var request_obj = { 'id': id, 'hashtag': this.hashtagInput, 'number_of_tweets': Number(this.itemsInput) };
         console.log('getting tweets...');
         this.tweetService.sendDataRequest(JSON.stringify(request_obj));
     };

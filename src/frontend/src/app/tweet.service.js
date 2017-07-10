@@ -18,6 +18,7 @@ var TweetService = (function () {
     function TweetService(socket, http) {
         this.socket = socket;
         this.http = http;
+        this.currentRequestId = 1;
         // Observable string sources
         this.hashtagSource = new Subject_1.Subject();
         this.dataSource = new Subject_1.Subject();
@@ -29,6 +30,12 @@ var TweetService = (function () {
         this.selectedTweet$ = this.selectedTweetSource.asObservable();
         this.showTweetOverview$ = this.showTweetOverviewSource.asObservable();
     }
+    TweetService.prototype.getCurrentId = function () {
+        return this.currentRequestId;
+    };
+    TweetService.prototype.setCurrentId = function (id) {
+        this.currentRequestId = id;
+    };
     // Service message commands
     TweetService.prototype.announceNewHashtag = function (newHashtag) {
         this.lastKnownHashtag = newHashtag;

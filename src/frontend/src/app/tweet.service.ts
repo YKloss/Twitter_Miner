@@ -13,6 +13,8 @@ export class TweetService {
   private lastKnownData: any;
   private lastKnownSelectedTweet: any;
 
+  private currentRequestId: number = 1;
+
   // Observable string sources
   private hashtagSource = new Subject<any>();
   private dataSource = new Subject<any>();
@@ -24,6 +26,14 @@ export class TweetService {
   data$ = this.dataSource.asObservable();
   selectedTweet$ = this.selectedTweetSource.asObservable();
   showTweetOverview$ = this.showTweetOverviewSource.asObservable();
+
+  getCurrentId() {
+    return this.currentRequestId;
+  }
+
+  setCurrentId(id: number) {
+    this.currentRequestId = id;
+  }
 
   // Service message commands
   announceNewHashtag(newHashtag: string) {
